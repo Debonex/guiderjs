@@ -1,8 +1,12 @@
 {
   "compilerOptions": {
+    "target": "esnext",
     "allowJs": true,
     "noEmit": true,
     "noImplicitAny": true,
+    "resolveJsonModule": true,
+    "declaration": true,
+    "moduleResolution": "Node",
     "baseUrl": ".",
     "paths": {
       "@core/*": ["packages/core/src/*"]

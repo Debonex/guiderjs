@@ -1,5 +1,7 @@
 import Guider from "@core/index";
-import BuiltGuider from "@guiderjs/core";
+// uncomment this line to use built version
+// import Guider from "@guiderjs/core";
 
 const guider = new Guider();
-const builtGuider = new BuiltGuider();
+
+guider.hello();

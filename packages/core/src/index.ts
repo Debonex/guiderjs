@@ -1,6 +1,14 @@
+import { version } from "../package.json";
+
 class Guider {
+  version: string;
+
   constructor() {
-    console.log("create Guider");
+    this.version = version;
+  }
+
+  hello() {
+    console.log(this.version);
   }
 }
 
