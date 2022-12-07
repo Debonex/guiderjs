@@ -1,0 +1,18 @@
+{
+  "name": "dev",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Customizable library for creating guide on your website.",
+  "repository": "https://github.com/Debonex/guiderjs.git",
+  "author": "Debonex <debonexx@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite"
+  },
+  "devDependencies": {
+    "vite": "^3.2.5"
+  },
+  "dependencies": {
+    "@guiderjs/core": "link:..\\core"
+  }
+}
