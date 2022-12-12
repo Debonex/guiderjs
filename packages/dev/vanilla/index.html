@@ -7,6 +7,36 @@
   </head>
 
   <body>
+    <div class="container-main">
+      <div class="control-panel">
+        <div class="control-panel-buttons"></div>
+      </div>
+
+      <div class="guider-boundary">
+        <!-- static -->
+        <div class="container-static">
+          static
+          <div class="target target-1">target-1</div>
+          <div class="target target-2">target-2</div>
+          <div class="target target-3">target-3</div>
+        </div>
+
+        <!-- relative -->
+        <div class="container-relative">
+          relative
+          <div class="target target-4">target-4</div>
+          <div class="target target-5">
+            target-5;<br />
+            z-index:20
+            <div class="target target-5-1">target-5-1</div>
+          </div>
+          <div class="target target-6">
+            target-6
+            <button class="target target-6-1">target-6-1</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <script type="module" src="./main.ts"></script>
   </body>
 </html>

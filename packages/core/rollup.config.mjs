@@ -10,7 +10,7 @@ const pkg = require("./package.json");
 export default defineConfig([
   {
     input: "src/index.ts",
-    plugins: [esbuild(), json()],
+    plugins: [esbuild({ optimizeDeps: { include: ["deepmerge-ts"] } }), json()],
     output: [{ file: pkg.main, format: "es" }],
   },
   {

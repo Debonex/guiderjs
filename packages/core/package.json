@@ -12,9 +12,13 @@
   },
   "devDependencies": {
     "@rollup/plugin-json": "^5.0.2",
+    "esbuild": "^0.16.4",
     "rollup": "^3.6.0",
     "rollup-plugin-dts": "^5.0.0",
     "rollup-plugin-esbuild": "^5.0.0",
     "typescript": "^4.9.3"
+  },
+  "dependencies": {
+    "deepmerge-ts": "^4.2.2"
   }
 }

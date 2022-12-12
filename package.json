@@ -9,12 +9,17 @@
   "scripts": {
     "prettier:fix": "prettier --write .",
     "prepare": "husky install",
-    "dev": "pnpm dev --filter dev",
-    "build": "pnpm build --filter @guiderjs/* --parallel"
+    "dev": "pnpm -r dev --filter dev",
+    "build": "pnpm -r build --filter @guiderjs/* --parallel"
   },
   "devDependencies": {
     "husky": "^8.0.2",
     "lint-staged": "^13.1.0",
     "prettier": "^2.8.0"
-  }
+  },
+  "engines": {
+    "node": ">=14",
+    "pnpm": ">=7.0.0"
+  },
+  "packageManager": "pnpm@7.0.0"
 }
