@@ -1,7 +1,7 @@
 // https://gist.github.com/ca0v/73a31f57b397606c9813472f7493a940
 export const debounce = <F extends (...args: any) => any>(
   func: F,
-  waitFor = 20
+  waitFor = 50
 ) => {
   let timeout: number = 0;
 

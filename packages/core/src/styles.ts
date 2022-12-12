@@ -56,32 +56,27 @@ export const createStyles = () => {
   };
 };
 
-export const createAnimations = () => {
-  const style = document.createElement("style");
-  // TODO: rawly load css
-  style.innerHTML = `
-    @keyframes guiderjs-flip-y {
-      from {
-        opacity: 0;
-        transform: rotate3d(1, 0, 0, -180deg);
-      }
-      to {
-        opacity: 1;
-        transform: rotate3d(1, 0, 0, 0deg);
-      }
-    }
-    @keyframes guiderjs-flip-y-out {
-      from {
-          opacity: 1;
-          transform: rotate3d(1, 0, 0, 0deg);
-      }
-      to {
-          opacity: 0;
-          transform: rotate3d(1, 0, 0, -180deg);
-      }
-    }
-  `;
-  return style;
-};
+export const animationCss = `
+@keyframes guiderjs-flip-y {
+  from {
+    opacity: 0;
+    transform: rotate3d(1, 0, 0, -180deg);
+  }
+  to {
+    opacity: 1;
+    transform: rotate3d(1, 0, 0, 0deg);
+  }
+}
+@keyframes guiderjs-flip-y-out {
+  from {
+      opacity: 1;
+      transform: rotate3d(1, 0, 0, 0deg);
+  }
+  to {
+      opacity: 0;
+      transform: rotate3d(1, 0, 0, -180deg);
+  }
+}
+`;
 
 export type Styles = ReturnType<typeof createStyles>;

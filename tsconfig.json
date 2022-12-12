@@ -1,15 +1,18 @@
 {
   "compilerOptions": {
-    "target": "esnext",
+    "target": "ESNext",
     "allowJs": true,
-    "noEmit": true,
+    "emitDeclarationOnly": true,
     "noImplicitAny": true,
     "resolveJsonModule": true,
     "declaration": true,
     "moduleResolution": "Node",
     "baseUrl": ".",
+    "allowSyntheticDefaultImports": true,
     "paths": {
-      "@core/*": ["packages/core/src/*"]
+      "@core/*": ["packages/core/src/*"],
+      "@vanilla/*": ["packages/vanilla/src/*"],
+      "@react/*": ["packages/react/src/*"]
     }
   }
 }

@@ -1,64 +1,56 @@
-import { Styles } from "./styles";
-import TargetManager from "./TargetManager";
 import { Step } from "./types";
-import { createDiv } from "./utils/dom";
+import animationEndPromise from "./utils/animationEndPromise";
 
 /**
- * PopoverManager:
- * manage popover
+ * manage visibility and position of popover
  */
-class PopoverManager {
-  /** popover element */
+class PopoverManager<T> {
   private popover: HTMLDivElement;
-  /** target manager */
-  private targetManager: TargetManager;
+  private control: HTMLDivElement;
+  private overlayTop: HTMLDivElement;
+  private overlayLeft: HTMLDivElement;
+  private container: HTMLDivElement;
 
-  constructor(styles: Styles, targetManager: TargetManager) {
-    this.popover = createDiv(styles.popover);
-    this.targetManager = targetManager;
-    this.targetManager.control.append(this.popover);
+  constructor(
+    popover: HTMLDivElement,
+    control: HTMLDivElement,
+    overlayTop: HTMLDivElement,
+    overlayLeft: HTMLDivElement,
+    container: HTMLDivElement
+  ) {
+    this.popover = popover;
+    this.control = control;
+    this.overlayTop = overlayTop;
+    this.overlayLeft = overlayLeft;
+    this.container = container;
   }
 
-  /**
-   * update popover according to given step
-   * @param step
-   */
-  async start(step: Step) {
+  async start(step: Step<T>) {
     // if no popover, hide popover container
-    if (!step.popover || !step.popover.element) {
+    if (!step.popover) {
       this.popover.style.display = "none";
       return;
     }
 
-    // update popover content
-    // textContent is more efficient than innerHTML
-    this.popover.textContent = "";
-    this.popover.append(step.popover.element);
-
-    // update popover position after content updated, because size of popover will be influenced by content
+    // update popover position
     if (step.target) {
-      if (step.popover.position === "auto") {
-        const overlayTopHeight = this._extract(
-          this.targetManager.overlayTop.style.height
-        );
-        const overlayLeftWidth = this._extract(
-          this.targetManager.overlayLeft.style.width
-        );
+      if (step.popoverPosition === "auto") {
+        const overlayTopHeight = this._extract(this.overlayTop.style.height);
+        const overlayLeftWidth = this._extract(this.overlayLeft.style.width);
         const popoverStyle = getComputedStyle(this.popover);
         const popoverHeight = this._extract(popoverStyle.height);
         const popoverWidth = this._extract(popoverStyle.width);
-        const containerRect =
-          this.targetManager.container.getBoundingClientRect();
+        const containerRect = this.container.getBoundingClientRect();
         // try top
-        if (overlayTopHeight >= popoverHeight + step.popover.gap) {
+        if (overlayTopHeight >= popoverHeight + step.popoverGap) {
           this._setControlTop(step);
         }
         // try right
         else if (
           containerRect.width -
             overlayLeftWidth -
-            this._extract(this.targetManager.control.style.width) -
-            step.popover.gap >=
+            this._extract(this.control.style.width) -
+            step.popoverGap >=
           popoverWidth
         ) {
           this._setControlRight(step);
@@ -67,23 +59,23 @@ class PopoverManager {
         else if (
           containerRect.height -
             overlayTopHeight -
-            this._extract(this.targetManager.control.style.height) -
-            step.popover.gap >=
+            this._extract(this.control.style.height) -
+            step.popoverGap >=
           popoverHeight
         ) {
           this._setControlBottom(step);
         }
         // try left
-        else if (overlayLeftWidth + step.popover.gap >= popoverWidth) {
+        else if (overlayLeftWidth + step.popoverGap >= popoverWidth) {
           this._setControlLeft(step);
         }
         // default
         else {
-          this.popover.style.top = step.popover.top;
-          this.popover.style.left = step.popover.left;
+          this.popover.style.top = step.popoverTop;
+          this.popover.style.left = step.popoverLeft;
         }
       } else {
-        switch (step.popover.position) {
+        switch (step.popoverPosition) {
           case "target-top":
             this._setControlTop(step);
             break;
@@ -97,18 +89,17 @@ class PopoverManager {
             this._setControlRight(step);
             break;
           default:
-            console.warn(`Unknown popover position ${step.popover.position}`);
+            console.warn(`Unknown popover position ${step.popoverPosition}`);
             break;
         }
       }
     } else {
-      switch (step.popover.position) {
+      switch (step.popoverPosition) {
         case "center":
           const popoverStyle = getComputedStyle(this.popover);
           const popoverHeight = this._extract(popoverStyle.height);
           const popoverWidth = this._extract(popoverStyle.width);
-          const containerRect =
-            this.targetManager.container.getBoundingClientRect();
+          const containerRect = this.container.getBoundingClientRect();
           this.popover.style.top = `${
             containerRect.height / 2 - popoverHeight / 2
           }px`;
@@ -117,75 +108,56 @@ class PopoverManager {
           }px`;
           break;
         default:
-          this.popover.style.top = step.popover.top;
-          this.popover.style.left = step.popover.left;
+          this.popover.style.top = step.popoverTop;
+          this.popover.style.left = step.popoverLeft;
           break;
       }
     }
     this.popover.style.display = "initial";
 
     // show popover
-    this.popover.style.animation = `guiderjs-${step.popover.animation} ${step.popover.animationDuration} ${step.popover.animationTimingFunction} forwards`;
-    await this._animationEndPromise(this.popover);
+    this.popover.style.animation = `guiderjs-${step.popoverAnimation} ${step.popoverAnimationDuration} ${step.popoverAnimationFunction} forwards`;
+    await animationEndPromise(this.popover);
   }
 
   /**
    * exit popover of given step
    * @param step
    */
-  async exit(step: Step) {
-    if (!step.popover || !step.popover.element) {
+  async exit(step: Step<T>) {
+    if (!step.popover) {
       return;
     }
-    this.popover.style.animation = `guiderjs-${step.popover.animation}-out ${step.popover.animationDuration} ${step.popover.animationTimingFunction} forwards`;
-    await this._animationEndPromise(this.popover);
+    this.popover.style.animation = `guiderjs-${step.popoverAnimation}-out ${step.popoverAnimationDuration} ${step.popoverAnimationFunction} forwards`;
+    await animationEndPromise(this.popover);
   }
 
   /** set popover to top of control */
-  private _setControlTop(step: Step) {
+  private _setControlTop(step: Step<T>) {
     const height = getComputedStyle(this.popover).height;
-    this.popover.style.top = `calc(${step.popover.top} - ${height} - ${step.popover.gap}px)`;
-    this.popover.style.left = step.popover.left;
+    this.popover.style.top = `calc(${step.popoverTop} - ${height} - ${step.popoverGap}px)`;
+    this.popover.style.left = step.popoverLeft;
   }
 
   /** set popover to bottom of control */
-  private _setControlBottom(step: Step) {
-    this.popover.style.top = `calc(${step.popover.top} + ${this.targetManager.control.style.height} + ${step.popover.gap}px)`;
-    this.popover.style.left = step.popover.left;
+  private _setControlBottom(step: Step<T>) {
+    this.popover.style.top = `calc(${step.popoverTop} + ${this.control.style.height} + ${step.popoverGap}px)`;
+    this.popover.style.left = step.popoverLeft;
   }
 
   /** set popover to left of control */
-  private _setControlLeft(step: Step) {
+  private _setControlLeft(step: Step<T>) {
     const width = getComputedStyle(this.popover).width;
-    this.popover.style.top = step.popover.top;
-    this.popover.style.left = `calc(${step.popover.left} - ${width} - ${step.popover.gap}px)`;
+    this.popover.style.top = step.popoverTop;
+    this.popover.style.left = `calc(${step.popoverLeft} - ${width} - ${step.popoverGap}px)`;
   }
 
   /** set popover to right of control */
-  private _setControlRight(step: Step) {
-    this.popover.style.top = step.popover.top;
-    this.popover.style.left = `calc(${step.popover.left} + ${this.targetManager.control.style.width} + ${step.popover.gap}px)`;
+  private _setControlRight(step: Step<T>) {
+    this.popover.style.top = step.popoverTop;
+    this.popover.style.left = `calc(${step.popoverLeft} + ${this.control.style.width} + ${step.popoverGap}px)`;
   }
 
-  /**
-   * create a promise to wait until animation end of given dom
-   * @param dom
-   */
-  private _animationEndPromise(dom: Element): Promise<void> {
-    return new Promise((resolve) => {
-      const onAnimationEnd = () => {
-        dom.removeEventListener("animationend", onAnimationEnd);
-        resolve();
-      };
-      dom.addEventListener("animationend", onAnimationEnd);
-    });
-  }
-
-  /**
-   * extract x of `${x}px`
-   * @param pxStr
-   * @returns
-   */
   private _extract(pxStr: string) {
     return Number(pxStr.slice(0, -2));
   }

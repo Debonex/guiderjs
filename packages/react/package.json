@@ -1,0 +1,28 @@
+{
+  "name": "@guiderjs/react",
+  "version": "0.1.0",
+  "description": "Customizable library for creating guide on your website.",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "repository": "https://github.com/Debonex/guiderjs.git",
+  "author": "Debonex <debonexx@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build:lib": "esbuild src/index.ts --bundle --format=esm --outfile=dist/index.js --external:react --external:react-dom",
+    "build:types": "tsc",
+    "build": "run-p build:lib build:types"
+  },
+  "dependencies": {
+    "@guiderjs/core": "workspace:^0.1.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.26",
+    "@types/react-dom": "^18.0.9",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "peerDependencies": {
+    "react": ">=16.9.0",
+    "react-dom": ">=16.9.0"
+  }
+}
