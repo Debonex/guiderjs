@@ -9,8 +9,10 @@
   "scripts": {
     "prettier:fix": "prettier --write .",
     "prepare": "husky install",
-    "dev": "pnpm -r dev --filter dev",
-    "build": "pnpm -r build --filter @guiderjs/* --parallel"
+    "dev": "pnpm -F dev dev",
+    "build:core": "pnpm -F vanilla build",
+    "build:react": "pnpm -F react build",
+    "build": "pnpm -r build"
   },
   "devDependencies": {
     "husky": "^8.0.2",
