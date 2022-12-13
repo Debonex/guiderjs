@@ -1,6 +1,6 @@
 import Guider, { Step } from "@core/index";
 // uncomment this line to use built version
-// import Guider from "@guiderjs/core";
+// import Guider, { Step } from "@guiderjs/core";
 
 import "./main.css";
 

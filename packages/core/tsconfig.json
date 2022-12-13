@@ -1,6 +1,8 @@
 {
+  "files": ["src/index.ts"],
   "compilerOptions": {
-    "lib": ["ESNext", "DOM"]
+    "lib": ["ESNext", "DOM"],
+    "outDir": "dist"
   },
   "extends": "../../tsconfig.json"
 }
