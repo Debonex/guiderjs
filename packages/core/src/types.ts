@@ -9,8 +9,8 @@ export type Step = {
 
 /** global option */
 export type GuiderOption = {
-  boundary?: Element;
-  steps?: Step[];
+  boundary?: Element | string;
+  steps: Step[];
   onStart?: () => void;
   onExit?: () => void;
 } & CommonOption;
@@ -31,6 +31,17 @@ export type PopoverPosition =
 
 export type PopoverAnimation = "flip-y";
 
+export type PopoverOption = {
+  element?: Element;
+  position?: PopoverPosition;
+  gap?: number;
+  left?: string;
+  top?: string;
+  animation?: PopoverAnimation;
+  animationDuration?: string;
+  animationTimingFunction?: string;
+};
+
 /** option in each step and global option */
 type CommonOption = {
   target?: string | TargetOption;
@@ -42,16 +53,7 @@ type CommonOption = {
   zIndex?: number;
   onStepStart?: (step?: Step) => void;
   onStepExit?: (step?: Step) => void;
-  popover?: {
-    element?: Element;
-    position?: PopoverPosition;
-    gap?: number;
-    left?: string;
-    top?: string;
-    animation?: PopoverAnimation;
-    animationDuration?: string;
-    animationTimingFunction?: string;
-  };
+  popover?: PopoverOption;
 };
 
 export type Status = "stop" | "stepStarting" | "stepExiting" | "show";

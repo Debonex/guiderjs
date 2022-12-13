@@ -1,3 +1,4 @@
+// TODO: remove deepmerge to reduce bundle size
 import { deepmerge } from "deepmerge-ts";
 import { version } from "../package.json";
 import PopoverManager from "./PopoverManager";
@@ -5,6 +6,7 @@ import { createStyles, createAnimations } from "./styles";
 import TargetManager from "./TargetManager";
 import {
   GuiderOption,
+  PopoverOption,
   PopoverPosition,
   Status,
   Step,
@@ -14,6 +16,7 @@ import debounce from "./utils/debounce";
 import { createDiv } from "./utils/dom";
 
 const defaultOption: GuiderOption = {
+  steps: [],
   overlay: {
     color: "#333333",
     opacity: 0.5,
@@ -62,10 +65,16 @@ class Guider {
   constructor(option: GuiderOption) {
     this.option = deepmerge(defaultOption, option);
     this.version = version;
-    this.boundary = option.boundary ?? document.body;
+
+    if (typeof this.option.boundary === "string") {
+      this.boundary =
+        document.querySelector(this.option.boundary) ?? document.body;
+    } else {
+      this.boundary = this.option.boundary ?? document.body;
+    }
 
     this.status = "stop";
-    this.steps = option.steps ?? [];
+    this.steps = this.option.steps ?? [];
     this.currentStepIdx = -1;
     this.currentStep = null;
 
@@ -160,6 +169,21 @@ class Guider {
     this.status = "stop";
   }
 
+  async updateOption(option: GuiderOption) {
+    this.option = deepmerge(defaultOption, option);
+
+    this.currentStep = deepmerge(this.option, this.steps[this.currentStepIdx]);
+
+    if (this.status === "show") {
+      await this.targetManager.start(this.currentStep);
+      await this.popoverManager.start(this.currentStep);
+    }
+  }
+
+  unmount() {
+    this.boundary.removeChild(this.container);
+  }
+
   private async _playStep(fromStop = false) {
     this.status = "stepStarting";
     if (!fromStop) {
@@ -189,6 +213,13 @@ class Guider {
   }
 }
 
-export type { GuiderOption, Status, Step, TargetOption, PopoverPosition };
+export type {
+  GuiderOption,
+  Status,
+  Step,
+  TargetOption,
+  PopoverPosition,
+  PopoverOption,
+};
 
 export default Guider;

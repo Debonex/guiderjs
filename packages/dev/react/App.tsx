@@ -1,10 +1,12 @@
 import { FC } from "react";
-// import { useGuider } from "@react/index";
-import { useGuider } from "@guiderjs/react";
+import DemoBox from "./DemoBox";
 
 const App: FC = () => {
-  useGuider();
-  return <div></div>;
+  return (
+    <div>
+      <DemoBox />
+    </div>
+  );
 };
 
 export default App;
