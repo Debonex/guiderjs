@@ -5,6 +5,7 @@
 /** step option */
 export type Step = {
   key: string;
+  payload?: any;
 } & CommonOption;
 
 /** global option */

@@ -13,3 +13,12 @@
   width: 200px;
   padding: 0 10px;
 }
+
+.target2 {
+  background: rgba(0, 255, 0, 0.3);
+  height: 30px;
+  line-height: 30px;
+  width: 200px;
+  margin-top: 30px;
+  padding: 0 10px;
+}

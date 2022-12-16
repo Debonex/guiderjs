@@ -7,14 +7,14 @@ import { ReactElement, useEffect, useRef } from "react";
 import { createRoot } from "react-dom/client";
 
 export type PopoverOption = Omit<CorePopoverOption, "element"> & {
-  element: ReactElement;
+  element?: ReactElement;
 };
 
 export type GuiderOption = Omit<
   CoreGuiderOption,
   "boundary" | "popover" | "steps"
 > & {
-  boundary: string;
+  boundary?: string;
   popover?: PopoverOption;
   steps: Step[];
 };
@@ -24,13 +24,17 @@ export type Step = Omit<CoreStep, "popover"> & {
 };
 
 const coreOption = (option: GuiderOption): CoreGuiderOption => {
-  const domElement = (reactElement: ReactElement) => {
-    const element = document.createElement("div");
-    createRoot(element).render(reactElement);
-    return element;
+  const domElement = (element: ReactElement) => {
+    if (element instanceof Element) {
+      return element;
+    }
+
+    const domElement = document.createElement("div");
+    createRoot(domElement).render(element);
+    return domElement;
   };
 
-  const transformedOption: CoreGuiderOption = Object.assign(option, {});
+  const transformedOption: CoreGuiderOption = Object.assign({}, option);
   if (transformedOption.popover?.element) {
     transformedOption.popover.element = domElement(option.popover.element);
   }

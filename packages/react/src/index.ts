@@ -1,14 +1,15 @@
-import useGuider from "./useGuider";
-import {
+import Guider, {
+  PopoverOption,
+  PopoverPosition,
   Status,
   TargetOption,
-  PopoverPosition,
-  PopoverOption,
 } from "@core/index";
+import useGuider from "./useGuider";
 
-import { Step, GuiderOption } from "./useGuider";
+import { GuiderOption, Step } from "./useGuider";
 
 export type {
+  Guider,
   Step,
   GuiderOption,
   Status,

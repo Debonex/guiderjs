@@ -31,8 +31,7 @@ class PopoverManager {
     }
 
     // update popover content
-    // textContent is more efficient than innerHTML
-    this.popover.textContent = "";
+    this.popover.innerHTML = "";
     this.popover.append(step.popover.element);
 
     // update popover position after content updated, because size of popover will be influenced by content

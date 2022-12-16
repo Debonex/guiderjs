@@ -1,29 +1,38 @@
 import { Step, useGuider } from "@react/index";
+// import { Step, useGuider } from "@guiderjs/react";
 import { FC, useState } from "react";
 import styles from "./DemoBox.module.css";
-// import { useGuider } from "@guiderjs/react";
+import Popover from "./Popover";
 
 const DemoBox: FC = () => {
+  const [overlayColor, setOverlayColor] = useState("#333333");
+  const [overlayOpacity, setOverlayOpacity] = useState(0.5);
+  const [gap, setGap] = useState(8);
+
   const steps: Step[] = [
     {
-      key: "start",
+      key: "target1",
       target: `.${styles.target1}`,
       popover: {
         element: <div>dd</div>,
       },
     },
+    {
+      key: "target2",
+      target: `.${styles.target2}`,
+      popover: {
+        gap: 20,
+      },
+    },
   ];
-
-  const [overlayColor, setOverlayColor] = useState("#333333");
-  const [overlayOpacity, setOverlayOpacity] = useState(0.5);
-  const [gap, setGap] = useState(8);
+  console.log("use guider");
 
   const guider = useGuider({
     boundary: "#demo-container",
     steps,
     overlay: { color: overlayColor, opacity: overlayOpacity },
     popover: {
-      element: null,
+      element: <Popover />,
       gap: gap,
     },
   });
@@ -54,6 +63,7 @@ const DemoBox: FC = () => {
       <button onClick={() => guider.current.start()}>start</button>
       <div className={styles.container} id="demo-container">
         <div className={styles.target1}>target1</div>
+        <div className={styles.target2}>target2</div>
       </div>
     </>
   );

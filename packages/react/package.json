@@ -8,7 +8,7 @@
   "author": "Debonex <debonexx@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build:lib": "esbuild src/index.ts --bundle --format=esm --outfile=dist/index.js --external:react",
+    "build:lib": "esbuild src/index.ts --bundle --format=esm --outfile=dist/index.js --external:react --external:react-dom",
     "build:types": "tsc",
     "build": "run-p build:lib build:types"
   },
