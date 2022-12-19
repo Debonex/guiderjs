@@ -11,6 +11,7 @@
     "allowSyntheticDefaultImports": true,
     "paths": {
       "@core/*": ["packages/core/src/*"],
+      "@vanilla/*": ["packages/vanilla/src/*"],
       "@react/*": ["packages/react/src/*"]
     }
   }

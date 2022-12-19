@@ -1,4 +1,4 @@
-import Guider, { Step } from "@core/index";
+import Guider, { Step } from "@vanilla/index";
 // uncomment this line to use built version
 // import Guider, { Step } from "@guiderjs/core";
 

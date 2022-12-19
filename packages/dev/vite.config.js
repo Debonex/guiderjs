@@ -7,6 +7,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "@core": resolve(__dirname, "../core/src"),
+      "@vanilla": resolve(__dirname, "../vanilla/src"),
       "@react": resolve(__dirname, "../react/src"),
     },
   },

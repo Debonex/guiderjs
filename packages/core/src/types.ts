@@ -1,60 +1,68 @@
-/**
- * define common types in this file.
- */
-
-/** step option */
-export type Step = {
-  key: string;
-  payload?: any;
-} & CommonOption;
-
-/** global option */
-export type GuiderOption = {
-  boundary?: Element | string;
-  steps: Step[];
+export type GuiderOption<EL = Element> = {
+  steps: Step<EL>[];
   onStart?: () => void;
   onExit?: () => void;
-} & CommonOption;
+} & CommonOption<EL>;
 
-/** target option */
-export type TargetOption = {
-  selector: string;
-  onClick?: (e?: MouseEvent) => void;
-};
+export type Step<EL = Element> = {
+  key: string;
+} & CommonOption<EL>;
 
-export type PopoverPosition =
-  | "auto"
-  | "center"
-  | "target-top"
-  | "target-bottom"
-  | "target-left"
-  | "target-right";
-
-export type PopoverAnimation = "flip-y";
-
-export type PopoverOption = {
-  element?: Element;
-  position?: PopoverPosition;
-  gap?: number;
-  left?: string;
-  top?: string;
-  animation?: PopoverAnimation;
-  animationDuration?: string;
-  animationTimingFunction?: string;
-};
-
-/** option in each step and global option */
-type CommonOption = {
-  target?: string | TargetOption;
-  overlay?: {
-    color?: string;
-    opacity?: number;
-    onClick?: (e?: MouseEvent) => void;
-  };
+export type CommonOption<EL = Element> = {
+  target?: string;
+  overlayColor?: string;
+  overlayOpacity?: number;
   zIndex?: number;
-  onStepStart?: (step?: Step) => void;
-  onStepExit?: (step?: Step) => void;
-  popover?: PopoverOption;
+  popover?: EL;
+  popoverPosition?:
+    | "auto"
+    | "center"
+    | "target-top"
+    | "target-bottom"
+    | "target-left"
+    | "target-right";
+  popoverGap?: number;
+  popoverLeft?: string;
+  popoverTop?: string;
+  popoverAnimation?: string;
+  popoverAnimationDuration?: string;
+  popoverAnimationFunction?: string;
+  onStepStart?: (step?: Step<EL>) => void;
+  onStepExit?: (step?: Step<EL>) => void;
 };
+
+export interface IGuider {
+  /**
+   * start guider from the step has given key, if no step key given, start from the first step.
+   * guider needs to be `show` or `stop` status
+   * @param stepKey key of the step to start
+   */
+  start: (stepKey?: string) => void;
+  /**
+   * go to next step, if current step is the last step, exit
+   */
+  next: () => void;
+  /**
+   * go back one step, if current step is the first step, do nothing.
+   */
+  back: () => void;
+  /**
+   * exit guider
+   */
+  exit: () => Promise<void>;
+}
 
 export type Status = "stop" | "stepStarting" | "stepExiting" | "show";
+
+export const defaultOption: GuiderOption = {
+  steps: [],
+  overlayColor: "#333333",
+  overlayOpacity: 0.5,
+  zIndex: 99999,
+  popoverPosition: "auto",
+  popoverGap: 8,
+  popoverLeft: "0px",
+  popoverAnimation: "flip-y",
+  popoverAnimationDuration: "400ms",
+  popoverAnimationFunction: "ease",
+};

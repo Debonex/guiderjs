@@ -1,20 +1,5 @@
-import Guider, {
-  PopoverOption,
-  PopoverPosition,
-  Status,
-  TargetOption,
-} from "@core/index";
-import useGuider from "./useGuider";
+import GuiderImpl, { IGuider } from "./Guider";
 
-import { GuiderOption, Step } from "./useGuider";
+export default GuiderImpl;
 
-export type {
-  Guider,
-  Step,
-  GuiderOption,
-  Status,
-  TargetOption,
-  PopoverPosition,
-  PopoverOption,
-};
-export { useGuider };
+export type { IGuider };

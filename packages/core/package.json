@@ -1,17 +1,11 @@
 {
-  "name": "@guiderjs/vanilla",
+  "name": "core",
+  "private": "true",
   "version": "0.1.0",
-  "description": "Customizable library for creating guide on your website.",
-  "main": "dist/index.js",
-  "typings": "dist/src/index.d.ts",
+  "description": "Customizable library for creating guide on your website. (Common logic)",
   "repository": "https://github.com/Debonex/guiderjs.git",
   "author": "Debonex <debonexx@gmail.com>",
   "license": "MIT",
-  "scripts": {
-    "build:lib": "esbuild src/index.ts --bundle --format=esm --outfile=dist/index.js",
-    "build:types": "tsc",
-    "build": "run-p build:lib build:types"
-  },
   "dependencies": {
     "deepmerge-ts": "^4.2.2"
   }
