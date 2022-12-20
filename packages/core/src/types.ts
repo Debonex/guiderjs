@@ -10,8 +10,10 @@ export type Step<EL = Element> = {
 
 export type CommonOption<EL = Element> = {
   target?: string;
+  onTargetClick?: () => void;
   overlayColor?: string;
   overlayOpacity?: number;
+  onOverlayClick?: () => void;
   zIndex?: number;
   popover?: EL;
   popoverPosition?:

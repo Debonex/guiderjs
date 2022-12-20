@@ -7,11 +7,13 @@ const App: FC = () => {
 
   return (
     <div className="grid h-screen w-screen grid-rows-[auto,minmax(0,1fr)]">
-      <div className="flex gap-2 p-1">
-        <button onClick={() => guider.current.start()}>start</button>
-        <button onClick={() => guider.current.next()}>next</button>
-        <button onClick={() => guider.current.back()}>back</button>
-        <button onClick={() => guider.current.exit()}>exit</button>
+      <div className="p-1">
+        <div className="flex gap-2 p-1">
+          <button onClick={() => guider.current.start()}>start</button>
+          <button onClick={() => guider.current.next()}>next</button>
+          <button onClick={() => guider.current.back()}>back</button>
+          <button onClick={() => guider.current.exit()}>exit</button>
+        </div>
       </div>
       <div className="relative bg-slate-50 p-4">
         <div className="target1 bg-sky-300 p-2">target1</div>
@@ -19,9 +21,19 @@ const App: FC = () => {
         <Guider
           ref={guider}
           steps={[
-            { key: "target1", target: ".target1" },
-            { key: "target2", target: ".target2" },
+            {
+              key: "target1",
+              target: ".target1",
+              onStepStart: (step) => console.log(`start ${step.key}`),
+            },
+            {
+              key: "target2",
+              target: ".target2",
+              onStepExit: (step) => console.log(`exit ${step.key}`),
+            },
           ]}
+          onStart={() => console.log("start")}
+          onExit={() => console.log("exit")}
         />
       </div>
     </div>
