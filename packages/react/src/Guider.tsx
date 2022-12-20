@@ -46,7 +46,7 @@ const Guider: ForwardRefRenderFunction<IGuider, GuiderOption<ReactElement>> = (
   }, []);
 
   const handleOverlayClick = () => {
-    currentStep.onOverlayClick && currentStep.onOverlayClick();
+    currentStep?.onOverlayClick && currentStep.onOverlayClick();
   };
 
   const overlayStyles = (styles: CSSProperties): CSSProperties => ({
@@ -58,7 +58,7 @@ const Guider: ForwardRefRenderFunction<IGuider, GuiderOption<ReactElement>> = (
 
   if (guider.current) {
     guider.current.setOption({ ...defaultOption, ...props });
-    guider.current.setUpdateUI((step) => setCurrentStep(step));
+    // guider.current.setUpdateUI((step) => setCurrentStep(step));
   }
 
   useImperativeHandle<IGuider, IGuider>(ref, () => ({
