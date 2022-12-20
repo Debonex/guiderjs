@@ -63,6 +63,7 @@ export const defaultOption: GuiderOption = {
   zIndex: 99999,
   popoverPosition: "auto",
   popoverGap: 8,
+  popoverTop: "0px",
   popoverLeft: "0px",
   popoverAnimation: "flip-y",
   popoverAnimationDuration: "400ms",

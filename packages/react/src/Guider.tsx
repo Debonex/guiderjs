@@ -1,4 +1,5 @@
-import { createStyles } from "@core/styles";
+import { createStyles, animationCss } from "@core/styles";
+import { startTarget, updateControl } from "@core/target";
 import {
   defaultOption,
   GuiderOption,
@@ -6,15 +7,15 @@ import {
   Status,
   Step,
 } from "@core/types";
-import deepmerge from "@core/utils/deepmerge";
-import { updateControl } from "@core/target";
-import offsetDoms from "@core/utils/offsetDoms";
 import debounce from "@core/utils/debounce";
+import deepmerge from "@core/utils/deepmerge";
+import PopoverManager from "@core/PopoverManager";
 import {
   CSSProperties,
   forwardRef,
   ForwardRefRenderFunction,
   ReactElement,
+  useCallback,
   useEffect,
   useImperativeHandle,
   useRef,
@@ -30,12 +31,51 @@ const Guider: ForwardRefRenderFunction<IGuider, GuiderOption<ReactElement>> = (
   const overlayLeft = useRef<HTMLDivElement>();
   const overlayTop = useRef<HTMLDivElement>();
   const control = useRef<HTMLDivElement>();
+  const popover = useRef<HTMLDivElement>();
+  const popoverManager = useRef<PopoverManager<ReactElement>>();
   const status = useRef<Status>("stop");
   const currentStepIdx = useRef(-1);
+  const currentStepRef = useRef<Step<ReactElement>>(null);
   const [currentStep, setCurrentStep] = useState<Step<ReactElement>>(null);
   const styles = createStyles() as {
     [P in keyof ReturnType<typeof createStyles>]: CSSProperties;
   };
+
+  const updateControlImpl = useCallback(
+    (height: number, width: number, top: number, left: number) =>
+      updateControl(control.current, overlayTop.current, overlayLeft.current)(
+        height,
+        width,
+        top,
+        left
+      ),
+    []
+  );
+
+  const startTargetImpl = useCallback(
+    async () =>
+      await startTarget(
+        currentStepRef.current,
+        container.current,
+        updateControlImpl
+      )(),
+    []
+  );
+
+  useEffect(() => {
+    const resizeObserver = new ResizeObserver(debounce(startTargetImpl));
+    resizeObserver.observe(container.current);
+    popoverManager.current = new PopoverManager(
+      popover.current,
+      control.current,
+      overlayTop.current,
+      overlayLeft.current,
+      container.current
+    );
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, []);
 
   const handleOverlayClick = () => {
     currentStep.onOverlayClick && currentStep.onOverlayClick();
@@ -48,42 +88,8 @@ const Guider: ForwardRefRenderFunction<IGuider, GuiderOption<ReactElement>> = (
     opacity: currentStep?.overlayOpacity,
   });
 
+  // full option
   const guiderOption = deepmerge(defaultOption, props);
-
-  const updateControlImpl = (
-    height: number,
-    width: number,
-    top: number,
-    left: number
-  ) =>
-    updateControl(control.current, overlayTop.current, overlayLeft.current)(
-      height,
-      width,
-      top,
-      left
-    );
-
-  const startTarget = async (step: Step<ReactElement>) => {
-    if (!step.target) {
-      await updateControlImpl(0, 0, 0, 0);
-    } else {
-      const target = document.querySelector(step.target);
-      if (!target) {
-        return;
-      }
-      const offset = offsetDoms(target, container.current);
-      // fixed to 2 digits, prevent deviation
-      offset.top = Number(offset.top.toFixed(2));
-      offset.left = Number(offset.left.toFixed(2));
-      const targetRect = target.getBoundingClientRect();
-      await updateControlImpl(
-        targetRect.height,
-        targetRect.width,
-        offset.top,
-        offset.left
-      );
-    }
-  };
 
   const playCurrentStepIdx = async (fromStop = false) => {
     status.current = "stepStarting";
@@ -94,17 +100,19 @@ const Guider: ForwardRefRenderFunction<IGuider, GuiderOption<ReactElement>> = (
       guiderOption,
       props.steps[currentStepIdx.current]
     );
+    // update appearance
     setCurrentStep(stepOption);
-
     stepOption.onStepStart && stepOption.onStepStart(stepOption);
-    await startTarget(stepOption);
-
+    currentStepRef.current = stepOption;
+    await startTargetImpl();
+    await popoverManager.current.start(stepOption);
     status.current = "show";
   };
 
   const exitCurrentStep = async () => {
     status.current = "stepExiting";
     currentStep.onStepExit && currentStep.onStepExit(currentStep);
+    await popoverManager.current.exit(currentStep);
   };
 
   const startImpl = (stepKey?: string) => {
@@ -176,6 +184,7 @@ const Guider: ForwardRefRenderFunction<IGuider, GuiderOption<ReactElement>> = (
       ref={container}
       style={{ ...styles.container, zIndex: currentStep?.zIndex }}
     >
+      <style>{animationCss}</style>
       <div
         ref={overlayTop}
         style={overlayStyles(styles.overlayTop)}
@@ -198,7 +207,9 @@ const Guider: ForwardRefRenderFunction<IGuider, GuiderOption<ReactElement>> = (
             currentStep?.onTargetClick && currentStep.onOverlayClick()
           }
         >
-          <div style={styles.popover}></div>
+          <div ref={popover} style={styles.popover}>
+            {currentStep?.popover}
+          </div>
         </div>
         <div
           style={overlayStyles(styles.overlayRight)}

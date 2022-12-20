@@ -34,6 +34,7 @@ const App: FC = () => {
           ]}
           onStart={() => console.log("start")}
           onExit={() => console.log("exit")}
+          popover={<div className="rounded-md bg-white p-2">popover</div>}
         />
       </div>
     </div>
