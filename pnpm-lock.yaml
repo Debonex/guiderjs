@@ -19,6 +19,9 @@ importers:
       prettier-plugin-tailwindcss: 0.2.1_prettier@2.8.0
       typescript: 4.9.3
 
+  packages/core:
+    specifiers: {}
+
 packages:
   /@esbuild/android-arm/0.16.4:
     resolution:

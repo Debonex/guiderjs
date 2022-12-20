@@ -1,21 +1,21 @@
-export type GuiderOption<EL = Element> = {
-  steps: Step<EL>[];
+export type GuiderOption<T = Element> = {
+  steps: Step<T>[];
   onStart?: () => void;
   onExit?: () => void;
-} & CommonOption<EL>;
+} & CommonOption<T>;
 
-export type Step<EL = Element> = {
+export type Step<T = Element> = {
   key: string;
-} & CommonOption<EL>;
+} & CommonOption<T>;
 
-export type CommonOption<EL = Element> = {
+export type CommonOption<T = Element> = {
   target?: string;
   onTargetClick?: () => void;
   overlayColor?: string;
   overlayOpacity?: number;
   onOverlayClick?: () => void;
   zIndex?: number;
-  popover?: EL;
+  popover?: T;
   popoverPosition?:
     | "auto"
     | "center"
@@ -29,8 +29,8 @@ export type CommonOption<EL = Element> = {
   popoverAnimation?: string;
   popoverAnimationDuration?: string;
   popoverAnimationFunction?: string;
-  onStepStart?: (step?: Step<EL>) => void;
-  onStepExit?: (step?: Step<EL>) => void;
+  onStepStart?: (step?: Step<T>) => void;
+  onStepExit?: (step?: Step<T>) => void;
 };
 
 export interface IGuider {
@@ -68,4 +68,21 @@ export const defaultOption: GuiderOption = {
   popoverAnimation: "flip-y",
   popoverAnimationDuration: "400ms",
   popoverAnimationFunction: "ease",
+};
+
+export const getDefaultOption = <T>() => {
+  const defaultOption: GuiderOption<T> = {
+    steps: [],
+    overlayColor: "#333333",
+    overlayOpacity: 0.5,
+    zIndex: 99999,
+    popoverPosition: "auto",
+    popoverGap: 8,
+    popoverTop: "0px",
+    popoverLeft: "0px",
+    popoverAnimation: "flip-y",
+    popoverAnimationDuration: "400ms",
+    popoverAnimationFunction: "ease",
+  };
+  return defaultOption;
 };
