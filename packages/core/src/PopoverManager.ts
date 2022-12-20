@@ -1,4 +1,5 @@
 import { Step } from "./types";
+import animationEndPromise from "./utils/animationEndPromise";
 
 /**
  * manage visibility and position of popover
@@ -40,13 +41,6 @@ class PopoverManager<T> {
         const popoverHeight = this._extract(popoverStyle.height);
         const popoverWidth = this._extract(popoverStyle.width);
         const containerRect = this.container.getBoundingClientRect();
-        console.log(
-          containerRect.height -
-            overlayTopHeight -
-            this._extract(this.control.style.height) -
-            step.popoverGap >=
-            popoverHeight
-        );
         // try top
         if (overlayTopHeight >= popoverHeight + step.popoverGap) {
           this._setControlTop(step);
@@ -123,7 +117,7 @@ class PopoverManager<T> {
 
     // show popover
     this.popover.style.animation = `guiderjs-${step.popoverAnimation} ${step.popoverAnimationDuration} ${step.popoverAnimationFunction} forwards`;
-    await this._animationEndPromise(this.popover);
+    await animationEndPromise(this.popover);
   }
 
   /**
@@ -135,7 +129,7 @@ class PopoverManager<T> {
       return;
     }
     this.popover.style.animation = `guiderjs-${step.popoverAnimation}-out ${step.popoverAnimationDuration} ${step.popoverAnimationFunction} forwards`;
-    await this._animationEndPromise(this.popover);
+    await animationEndPromise(this.popover);
   }
 
   /** set popover to top of control */
@@ -162,20 +156,6 @@ class PopoverManager<T> {
   private _setControlRight(step: Step<T>) {
     this.popover.style.top = step.popoverTop;
     this.popover.style.left = `calc(${step.popoverLeft} + ${this.control.style.width} + ${step.popoverGap}px)`;
-  }
-
-  /**
-   * create a promise to wait until animation end of given dom
-   * @param dom
-   */
-  private _animationEndPromise(dom: Element): Promise<void> {
-    return new Promise((resolve) => {
-      const onAnimationEnd = () => {
-        dom.removeEventListener("animationend", onAnimationEnd);
-        resolve();
-      };
-      dom.addEventListener("animationend", onAnimationEnd);
-    });
   }
 
   private _extract(pxStr: string) {

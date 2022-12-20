@@ -1,5 +1,4 @@
 import { createStyles, animationCss } from "@core/styles";
-import { startTarget, updateControl } from "@core/target";
 import {
   defaultOption,
   GuiderOption,
@@ -10,6 +9,7 @@ import {
 import debounce from "@core/utils/debounce";
 import deepmerge from "@core/utils/deepmerge";
 import PopoverManager from "@core/PopoverManager";
+import TargetManager from "@core/TargetManager";
 import {
   CSSProperties,
   forwardRef,
@@ -33,6 +33,7 @@ const Guider: ForwardRefRenderFunction<IGuider, GuiderOption<ReactElement>> = (
   const control = useRef<HTMLDivElement>();
   const popover = useRef<HTMLDivElement>();
   const popoverManager = useRef<PopoverManager<ReactElement>>();
+  const targetManager = useRef<TargetManager<ReactElement>>();
   const status = useRef<Status>("stop");
   const currentStepIdx = useRef(-1);
   const currentStepRef = useRef<Step<ReactElement>>(null);
@@ -41,30 +42,7 @@ const Guider: ForwardRefRenderFunction<IGuider, GuiderOption<ReactElement>> = (
     [P in keyof ReturnType<typeof createStyles>]: CSSProperties;
   };
 
-  const updateControlImpl = useCallback(
-    (height: number, width: number, top: number, left: number) =>
-      updateControl(control.current, overlayTop.current, overlayLeft.current)(
-        height,
-        width,
-        top,
-        left
-      ),
-    []
-  );
-
-  const startTargetImpl = useCallback(
-    async () =>
-      await startTarget(
-        currentStepRef.current,
-        container.current,
-        updateControlImpl
-      )(),
-    []
-  );
-
   useEffect(() => {
-    const resizeObserver = new ResizeObserver(debounce(startTargetImpl));
-    resizeObserver.observe(container.current);
     popoverManager.current = new PopoverManager(
       popover.current,
       control.current,
@@ -72,6 +50,16 @@ const Guider: ForwardRefRenderFunction<IGuider, GuiderOption<ReactElement>> = (
       overlayLeft.current,
       container.current
     );
+    targetManager.current = new TargetManager(
+      container.current,
+      overlayTop.current,
+      overlayLeft.current,
+      control.current
+    );
+    const resizeObserver = new ResizeObserver(
+      debounce(() => targetManager.current.start(currentStepRef.current))
+    );
+    resizeObserver.observe(container.current);
     return () => {
       resizeObserver.disconnect();
     };
@@ -104,7 +92,7 @@ const Guider: ForwardRefRenderFunction<IGuider, GuiderOption<ReactElement>> = (
     setCurrentStep(stepOption);
     stepOption.onStepStart && stepOption.onStepStart(stepOption);
     currentStepRef.current = stepOption;
-    await startTargetImpl();
+    await targetManager.current.start(stepOption);
     await popoverManager.current.start(stepOption);
     status.current = "show";
   };
@@ -164,7 +152,7 @@ const Guider: ForwardRefRenderFunction<IGuider, GuiderOption<ReactElement>> = (
       return;
     }
     await exitCurrentStep();
-    await updateControlImpl(0, 0, 0, 0);
+    await targetManager.current.updateControl(0, 0, 0, 0);
     guiderOption.onExit && guiderOption.onExit();
     container.current.style.visibility = "hidden";
     currentStepIdx.current = -1;
