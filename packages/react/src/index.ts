@@ -1,5 +1,5 @@
-import GuiderImpl, { IGuider } from "./Guider";
+import Guider, { IGuider, Option, Step } from "./Guider";
 
-export default GuiderImpl;
+export default Guider;
 
-export type { IGuider };
+export type { IGuider, Option, Step };

@@ -4,7 +4,7 @@ import CoreGuider, {
   getDefaultOption,
   GuiderOption,
   IGuider,
-  Step,
+  Step as CoreStep,
 } from "@guiderjs/core";
 import {
   CSSProperties,
@@ -18,18 +18,17 @@ import {
 } from "react";
 
 const defaultOption = getDefaultOption<ReactElement>();
+type Option = GuiderOption<ReactElement>;
+type Step = CoreStep<ReactElement>;
 
-const Guider: ForwardRefRenderFunction<IGuider, GuiderOption<ReactElement>> = (
-  props,
-  ref
-) => {
+const Guider: ForwardRefRenderFunction<IGuider, Option> = (props, ref) => {
   const container = useRef<HTMLDivElement>();
   const overlayLeft = useRef<HTMLDivElement>();
   const overlayTop = useRef<HTMLDivElement>();
   const control = useRef<HTMLDivElement>();
   const popover = useRef<HTMLDivElement>();
   const guider = useRef<CoreGuider<ReactElement>>();
-  const [currentStep, setCurrentStep] = useState<Step<ReactElement>>(null);
+  const [currentStep, setCurrentStep] = useState<Step>(null);
   const styles = createStyles() as {
     [P in keyof ReturnType<typeof createStyles>]: CSSProperties;
   };
@@ -121,4 +120,4 @@ const ForwardedGuider = forwardRef(Guider);
 
 export default ForwardedGuider;
 
-export type { IGuider };
+export type { IGuider, Option, Step };

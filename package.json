@@ -12,7 +12,8 @@
     "dev": "pnpm -F dev dev",
     "build:core": "pnpm -F core build",
     "build:react": "pnpm -F react build",
-    "build:vanilla": "pnpm -F vanilla build"
+    "build:vanilla": "pnpm -F vanilla build",
+    "build": "pnpm -F ...core build"
   },
   "devDependencies": {
     "esbuild": "^0.16.4",

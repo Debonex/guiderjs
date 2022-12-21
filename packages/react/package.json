@@ -1,7 +1,10 @@
 {
   "name": "@guiderjs/react",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Customizable library for creating guide on your website.",
+  "files": [
+    "dist/*"
+  ],
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "repository": "https://github.com/Debonex/guiderjs.git",
