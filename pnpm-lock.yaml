@@ -62,10 +62,7 @@ importers:
       react-dom: 18.2.0_react@18.2.0
 
   packages/vanilla:
-    specifiers:
-      deepmerge-ts: ^4.2.2
-    dependencies:
-      deepmerge-ts: 4.2.2
+    specifiers: {}
 
 packages:
   /@ampproject/remapping/2.2.0:
@@ -1172,14 +1169,6 @@ packages:
     dependencies:
       ms: 2.1.2
     dev: true
-
-  /deepmerge-ts/4.2.2:
-    resolution:
-      {
-        integrity: sha512-Ka3Kb21tiWjvQvS9U+1Dx+aqFAHsdTnMdYptLTmC2VAmDFMugWMY1e15aTODstipmCun8iNuqeSfcx6rsUUk0Q==,
-      }
-    engines: { node: ">=12.4.0" }
-    dev: false
 
   /define-properties/1.1.4:
     resolution:

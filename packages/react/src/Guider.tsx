@@ -18,7 +18,6 @@ const Guider: ForwardRefRenderFunction<IGuider, GuiderOption<ReactElement>> = (
   props,
   ref
 ) => {
-  console.log("render guider");
   const container = useRef<HTMLDivElement>();
   const overlayLeft = useRef<HTMLDivElement>();
   const overlayTop = useRef<HTMLDivElement>();

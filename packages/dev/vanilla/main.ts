@@ -1,17 +1,13 @@
 import Guider, { Step } from "@vanilla/index";
-// uncomment this line to use built version
-// import Guider, { Step } from "@guiderjs/core";
+import "../main.css";
 
-import "./main.css";
-
+const buttonsContainer = document.querySelector(".buttons");
 const addButton = (content: string, onClick: () => void) => {
   const button = document.createElement("button");
   button.textContent = content;
   button.addEventListener("click", onClick);
-  document.querySelector(".control-panel-buttons").append(button);
+  buttonsContainer.append(button);
 };
-
-const boundary = document.querySelector(".guider-boundary");
 
 const popoverElement = document.createElement("div");
 popoverElement.innerHTML = `<div style="background:#fff;">hello</div>`;
@@ -19,40 +15,19 @@ popoverElement.innerHTML = `<div style="background:#fff;">hello</div>`;
 const steps: Step[] = [
   {
     key: "target-1",
-    target: {
-      selector: ".target-1",
-      onClick: () => {
-        guider.next();
-      },
-    },
+    target: ".target-1",
+    onOverlayClick: () => console.log("click target 1 overlay"),
   },
   {
     key: "target-2",
     target: ".target-2",
-    overlay: {
-      onClick: () => {
-        guider.back();
-      },
-    },
+    onTargetClick: () => console.log("click target 2"),
   },
-  {
-    key: "target-3",
-    target: ".target-3",
-    popover: {
-      element: popoverElement,
-      position: "target-left",
-    },
-  },
-  { key: "target-4", target: ".target-4" },
-  { key: "target-5", target: ".target-5" },
-  { key: "target-5-1", target: ".target-5-1" },
-  { key: "target-6", target: ".target-6" },
-  { key: "target-6-1", target: ".target-6-1" },
-  { key: "no-target", popover: { position: "center" } },
+  { key: "target-3", target: ".target-3" },
 ];
 
 const guider = new Guider({
-  boundary,
+  boundary: ".guider-boundary",
   steps,
   onExit: () => {
     console.log("exit");
@@ -60,10 +35,7 @@ const guider = new Guider({
   onStart: () => {
     console.log("start");
   },
-  onStepStart: console.log,
-  popover: {
-    element: popoverElement,
-  },
+  popover: popoverElement,
 });
 
 addButton("start", () => guider.start());
@@ -74,7 +46,3 @@ addButton("exit", () => guider.exit());
 steps.forEach((step) => {
   addButton(step.key, () => guider.start(step.key));
 });
-
-document
-  .querySelector(".target-6-1")
-  .addEventListener("click", () => guider.start("target-6-1"));
