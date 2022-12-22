@@ -8,12 +8,9 @@
     "moduleResolution": "Node",
     "baseUrl": ".",
     "allowSyntheticDefaultImports": true,
+    "jsx": "react-jsx",
     "paths": {
-      "@core/*": ["packages/core/src/*"],
-      "@vanilla/*": ["packages/vanilla/src/*"],
-      "@react/*": ["packages/react/src/*"],
-      "@vue3/*": ["packages/vue3/src/*"]
+      "@vanilla/*": ["../../vanilla/src/*"]
     }
-  },
-  "exclude": ["packages/dev/**/*"]
+  }
 }

@@ -5,7 +5,6 @@ import "../main.css";
 
 const App: FC = () => {
   const guider = useRef<IGuider>();
-
   return (
     <div className="grid h-screen w-screen grid-rows-[auto,minmax(0,1fr)]">
       <div className="p-1">
