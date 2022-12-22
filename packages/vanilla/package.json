@@ -24,5 +24,8 @@
   },
   "dependencies": {
     "@guiderjs/core": "workspace:^0.1.0"
+  },
+  "peerDependencies": {
+    "vue": ">=3.0.0"
   }
 }

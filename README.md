@@ -12,8 +12,8 @@ A customizable and animated library for creating guide on your website.
 
 ## Get started
 
-- [Vanilla](packages/vanilla/README.md)
-- [React](packages/react/README.md)
+- [Vanilla](packages/vanilla)
+- [React](packages/react)
 - Vue3 (WIP)
 
 ## Development
