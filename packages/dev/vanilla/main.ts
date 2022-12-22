@@ -1,5 +1,5 @@
-import Guider, { Step } from "@guiderjs/vanilla";
-// import Guider, { Step } from "@vanilla/index";
+import Guider, { Step } from "@vanilla/index";
+// import Guider, { Step } from "@guiderjs/vanilla";
 import "../main.css";
 
 const buttonsContainer = document.querySelector(".buttons");

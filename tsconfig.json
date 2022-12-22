@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "allowJs": true,
     "emitDeclarationOnly": true,
     "noImplicitAny": true,
     "resolveJsonModule": true,

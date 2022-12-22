@@ -10,6 +10,13 @@
   "repository": "https://github.com/Debonex/guiderjs.git",
   "author": "Debonex <debonexx@gmail.com>",
   "license": "MIT",
+  "keywords": [
+    "guiderjs",
+    "guider",
+    "intro",
+    "typescript",
+    "ui-library"
+  ],
   "scripts": {
     "build:lib": "esbuild src/index.ts --bundle --format=esm --outfile=dist/index.js",
     "build:types": "tsc",
