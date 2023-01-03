@@ -18,6 +18,7 @@ export default defineConfig({
       input: {
         vanilla: resolve(__dirname, "vanilla/index.html"),
         react: resolve(__dirname, "react/index.html"),
+        vue3: resolve(__dirname, "vue3/index.html"),
       },
     },
   },

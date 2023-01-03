@@ -1,7 +1,5 @@
-import Guider from "./Guider";
+import Guider, { IGuider, Step } from "./Guider";
 
-import { IGuider } from "@guiderjs/core";
-
-export type { IGuider };
+export type { IGuider, Step };
 
 export default Guider;
