@@ -1,16 +1,7 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "emitDeclarationOnly": true,
-    "noImplicitAny": true,
-    "resolveJsonModule": true,
-    "declaration": true,
-    "moduleResolution": "Node",
-    "baseUrl": ".",
-    "allowSyntheticDefaultImports": true,
-    "jsx": "react-jsx",
-    "paths": {
-      "@vanilla/*": ["../../vanilla/src/*"]
-    }
-  }
+    "composite": true
+  },
+  "references": [{ "path": "../../vanilla" }],
+  "extends": "../../../tsconfig.base.json"
 }

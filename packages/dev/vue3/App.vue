@@ -16,7 +16,7 @@
 </template>
 
 <script setup lang="ts">
-import Guider, { IGuider, Step } from "@vue3/index";
+import Guider, { IGuider, Step } from "@guiderjs/vue3";
 import { ref } from "vue";
 
 const guider = ref<IGuider>();
@@ -32,18 +32,18 @@ const test = () => {
 };
 
 const handleStart = () => {
-  guider.value.start();
+  guider.value?.start();
 };
 
 const handleNext = () => {
-  guider.value.next();
+  guider.value?.next();
 };
 
 const handleBack = () => {
-  guider.value.back();
+  guider.value?.back();
 };
 
 const handleExit = () => {
-  guider.value.exit();
+  guider.value?.exit();
 };
 </script>

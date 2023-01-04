@@ -3,7 +3,7 @@ import CoreGuider, {
   getDefaultOption,
   IGuider,
   Step as CoreStep,
-} from "@core/index";
+} from "@guiderjs/core";
 import { defineComponent, h, onMounted, PropType, Ref, ref } from "vue";
 
 type Step = CoreStep<boolean>;

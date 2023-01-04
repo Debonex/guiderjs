@@ -1,16 +1,9 @@
 {
+  "extends": "../../../tsconfig.base.json",
+  "include": ["./*.{vue,ts}"],
   "compilerOptions": {
-    "target": "ESNext",
-    "emitDeclarationOnly": true,
-    "noImplicitAny": true,
-    "resolveJsonModule": true,
-    "declaration": true,
-    "moduleResolution": "Node",
-    "baseUrl": ".",
-    "allowSyntheticDefaultImports": true,
     "jsx": "react-jsx",
-    "paths": {
-      "@vue3/*": ["../../vue3/src/*"]
-    }
-  }
+    "composite": true
+  },
+  "references": [{ "path": "../../vue3" }]
 }

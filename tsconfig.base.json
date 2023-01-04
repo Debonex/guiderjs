@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "emitDeclarationOnly": true,
+    "noImplicitAny": true,
+    "resolveJsonModule": true,
+    "declaration": true,
+    "moduleResolution": "Node",
+    "baseUrl": ".",
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "@core/*": ["packages/core/src/*"],
+      "@vanilla/*": ["packages/vanilla/src/*"],
+      "@react/*": ["packages/react/src/*"],
+      "@vue3/*": ["packages/vue3/src/*"]
+    }
+  }
+}
