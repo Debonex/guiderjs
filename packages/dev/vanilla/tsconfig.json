@@ -1,7 +1,0 @@
-{
-  "compilerOptions": {
-    "composite": true
-  },
-  "references": [{ "path": "../../vanilla" }],
-  "extends": "../../../tsconfig.base.json"
-}

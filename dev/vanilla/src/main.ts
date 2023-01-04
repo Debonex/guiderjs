@@ -1,13 +1,12 @@
 import Guider, { Step } from "@vanilla/index";
-// import Guider, { Step } from "@guiderjs/vanilla";
-import "../main.css";
+import "./style.css";
 
 const buttonsContainer = document.querySelector(".buttons");
 const addButton = (content: string, onClick: () => void) => {
   const button = document.createElement("button");
   button.textContent = content;
   button.addEventListener("click", onClick);
-  buttonsContainer.append(button);
+  buttonsContainer?.append(button);
 };
 
 const popoverElement = document.createElement("div");

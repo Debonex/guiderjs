@@ -3,9 +3,6 @@
     { "path": "packages/core" },
     { "path": "packages/vanilla" },
     { "path": "packages/react" },
-    { "path": "packages/vue3" },
-    { "path": "packages/dev/react" },
-    { "path": "packages/dev/vue3" },
-    { "path": "packages/dev/vanilla" }
+    { "path": "packages/vue3" }
   ]
 }

@@ -1,0 +1,46 @@
+<script setup lang="ts">
+import Guider, { IGuider, Step } from "@vue3/index";
+import { ref } from "vue";
+
+const guider = ref<IGuider>();
+const steps: Step[] = [
+  { key: "target1", target: ".target1" },
+  { key: "target2", target: ".target2" },
+];
+
+const test = () => {
+  console.log("test");
+};
+
+const handleStart = () => {
+  guider.value?.start();
+};
+
+const handleNext = () => {
+  guider.value?.next();
+};
+
+const handleBack = () => {
+  guider.value?.back();
+};
+
+const handleExit = () => {
+  guider.value?.exit();
+};
+</script>
+
+<template>
+  <div class="grid h-screen grid-rows-[auto,minmax(0,1fr)]">
+    <div class="flex gap-2 p-1">
+      <button @click="handleStart()">start</button>
+      <button @click="handleNext()">next</button>
+      <button @click="handleBack()">back</button>
+      <button @click="handleExit()">exit</button>
+    </div>
+    <div class="relative bg-slate-50 p-4">
+      <div class="target1 bg-sky-300 p-2">target1</div>
+      <div class="target2 mt-4 bg-red-300 p-2">target1</div>
+      <Guider :steps="steps" :on-start="() => test()" ref="guider" />
+    </div>
+  </div>
+</template>

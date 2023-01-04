@@ -1,8 +1,0 @@
-{
-  "compilerOptions": {
-    "jsx": "react-jsx",
-    "composite": true
-  },
-  "references": [{ "path": "../../react" }],
-  "extends": "../../../tsconfig.base.json"
-}

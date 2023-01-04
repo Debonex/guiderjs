@@ -1,18 +1,16 @@
-import { FC, useRef } from "react";
 import Guider, { IGuider } from "@react/index";
-// import Guider, { IGuider } from "@guiderjs/react";
-import "../main.css";
+import { useRef } from "react";
 
-const App: FC = () => {
-  const guider = useRef<IGuider>();
+function App() {
+  const guider = useRef<IGuider>(null);
   return (
     <div className="grid h-screen w-screen grid-rows-[auto,minmax(0,1fr)]">
       <div className="p-1">
         <div className="flex gap-2 p-1">
-          <button onClick={() => guider.current.start()}>start</button>
-          <button onClick={() => guider.current.next()}>next</button>
-          <button onClick={() => guider.current.back()}>back</button>
-          <button onClick={() => guider.current.exit()}>exit</button>
+          <button onClick={() => guider.current?.start()}>start</button>
+          <button onClick={() => guider.current?.next()}>next</button>
+          <button onClick={() => guider.current?.back()}>back</button>
+          <button onClick={() => guider.current?.exit()}>exit</button>
         </div>
       </div>
       <div className="relative bg-slate-50 p-4">
@@ -24,12 +22,12 @@ const App: FC = () => {
             {
               key: "target1",
               target: ".target1",
-              onStepStart: (step) => console.log(`start ${step.key}`),
+              onStepStart: (step) => console.log(`start ${step?.key}`),
             },
             {
               key: "target2",
               target: ".target2",
-              onStepExit: (step) => console.log(`exit ${step.key}`),
+              onStepExit: (step) => console.log(`exit ${step?.key}`),
             },
           ]}
           onStart={() => console.log("start")}
@@ -39,6 +37,6 @@ const App: FC = () => {
       </div>
     </div>
   );
-};
+}
 
 export default App;
