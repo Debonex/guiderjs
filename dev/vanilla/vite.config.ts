@@ -9,6 +9,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "@vanilla": resolve(__dirname, "../../packages/vanilla/src"),
+      "@core": resolve(__dirname, "../../packages/core/src"),
     },
   },
 });

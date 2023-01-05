@@ -8,6 +8,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "@vue3": resolve(__dirname, "../../packages/vue3/src"),
+      "@core": resolve(__dirname, "../../packages/core/src"),
     },
   },
 });

@@ -11,6 +11,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "@react": resolve(__dirname, "../../packages/react/src"),
+      "@core": resolve(__dirname, "../../packages/core/src"),
     },
   },
 });
