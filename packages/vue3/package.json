@@ -1,7 +1,7 @@
 {
-  "name": "@guiderjs/vanilla",
+  "name": "@guiderjs/vue3",
   "version": "0.1.0",
-  "description": "Customizable library for creating guide on your website.",
+  "description": "Customizable Vue component for creating guide on your website.",
   "files": [
     "dist/*"
   ],
@@ -11,6 +11,8 @@
   "author": "Debonex <debonexx@gmail.com>",
   "license": "MIT",
   "keywords": [
+    "vue",
+    "vue3",
     "guiderjs",
     "guider",
     "intro",
@@ -18,14 +20,14 @@
     "ui-library"
   ],
   "scripts": {
-    "build:lib": "esbuild src/index.ts --bundle --format=esm --outfile=dist/index.js",
+    "build:lib": "esbuild src/index.ts --bundle --format=esm --outfile=dist/index.js --external:vue",
     "build:types": "tsc",
     "build": "run-p build:lib build:types"
   },
   "dependencies": {
     "@guiderjs/core": "workspace:^0.1.0"
   },
-  "peerDependencies": {
-    "vue": ">=3.0.0"
+  "devDependencies": {
+    "vue": "^3.2.45"
   }
 }

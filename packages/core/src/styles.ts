@@ -17,7 +17,6 @@ export const createStyles = () => {
     overlayTop: defineStyle({
       pointerEvents: "all",
       transition: "300ms all ease",
-      height: "0px",
     }),
     middle: defineStyle({
       display: "flex",
@@ -25,13 +24,10 @@ export const createStyles = () => {
     overlayLeft: defineStyle({
       pointerEvents: "all",
       transition: "300ms all ease",
-      width: "0px",
     }),
     control: defineStyle({
       position: "relative",
       transition: "300ms all ease",
-      width: "0px",
-      height: "0px",
     }),
     overlayRight: defineStyle({
       pointerEvents: "all",

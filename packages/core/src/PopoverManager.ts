@@ -32,6 +32,10 @@ class PopoverManager<T> {
       return;
     }
 
+    // set popover display before getComputedStyle
+    // `window.getComputedStyle` will return `computed value`, when display is `none`
+    this.popover.style.display = "initial";
+
     // update popover position
     if (step.target) {
       if (step.popoverPosition === "auto") {
@@ -113,7 +117,6 @@ class PopoverManager<T> {
           break;
       }
     }
-    this.popover.style.display = "initial";
 
     // show popover
     this.popover.style.animation = `guiderjs-${step.popoverAnimation} ${step.popoverAnimationDuration} ${step.popoverAnimationFunction} forwards`;

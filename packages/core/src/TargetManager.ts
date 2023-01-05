@@ -21,6 +21,11 @@ class TargetManager<T> {
     this.overlayTop = overlayTop;
     this.overlayLeft = overlayLeft;
     this.control = control;
+    // init overlay and control size here(not in styles), prevent rerendering in vue3
+    this.control.style.width = "0px";
+    this.control.style.height = "0px";
+    this.overlayTop.style.height = "0px";
+    this.overlayLeft.style.width = "0px";
   }
 
   /**

@@ -6,7 +6,7 @@
     "dist/*"
   ],
   "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
+  "typings": "dist/src/index.d.ts",
   "repository": "https://github.com/Debonex/guiderjs.git",
   "author": "Debonex <debonexx@gmail.com>",
   "license": "MIT",
