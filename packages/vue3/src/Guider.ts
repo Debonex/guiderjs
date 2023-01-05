@@ -1,10 +1,20 @@
 import CoreGuider, {
   createStyles,
+  animationCss,
   getDefaultOption,
   IGuider,
   Step as CoreStep,
 } from "@guiderjs/core";
-import { defineComponent, h, onMounted, PropType, Ref, ref } from "vue";
+import {
+  defineComponent,
+  h,
+  onMounted,
+  PropType,
+  Ref,
+  ref,
+  renderSlot,
+  VNode,
+} from "vue";
 
 type Step = CoreStep<boolean>;
 
@@ -23,7 +33,7 @@ export default defineComponent({
     overlayOpacity: Number,
     onOverlayClick: Function as PropType<() => void>,
     zIndex: Number,
-    popover: Boolean,
+    popover: { type: Boolean, default: true },
     popoverPosition: String as PropType<
       | "auto"
       | "center"
@@ -41,7 +51,7 @@ export default defineComponent({
     onStepStart: Function as PropType<(step?: Step) => void>,
     onStepExit: Function as PropType<(step?: Step) => void>,
   },
-  setup: (props, { expose }) => {
+  setup: (props, { expose, slots }) => {
     const styles = createStyles();
     const guider = ref<CoreGuider<boolean>>();
     const currentStep = ref<Step>();
@@ -101,11 +111,18 @@ export default defineComponent({
     });
 
     return () => {
+      const animationNode = h("style", {}, animationCss);
       const overlayLeftNode = hOverlay(styles.overlayLeft, overlayLeft);
       const overlayTopNode = hOverlay(styles.overlayTop, overlayTop);
       const overlayRightNode = hOverlay(styles.overlayRight);
       const overlayBottomNode = hOverlay(styles.overlayBottom);
-      const popoverNode = h("div", { style: styles.popover, ref: popover });
+      const popoverNode: VNode = h(
+        "div",
+        { style: styles.popover, ref: popover },
+        slots[currentStep.value?.key]
+          ? renderSlot(slots, currentStep.value.key)
+          : undefined
+      );
       const controlNode = h(
         "div",
         {
@@ -127,7 +144,7 @@ export default defineComponent({
       const containerNode = h(
         "div",
         { style: styles.container, ref: container },
-        [overlayTopNode, middleNode, overlayBottomNode]
+        [animationNode, overlayTopNode, middleNode, overlayBottomNode]
       );
 
       return containerNode;

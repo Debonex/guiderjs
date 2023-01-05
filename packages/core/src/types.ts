@@ -1,4 +1,4 @@
-export type GuiderOption<T = Element> = {
+export type GuiderOption<T> = {
   steps: Step<T>[];
   onStart?: () => void;
   onExit?: () => void;
@@ -26,7 +26,7 @@ export type GuiderOption<T = Element> = {
   onStepExit?: (step?: Step<T>) => void;
 };
 
-export type Step<T = Element> = {
+export type Step<T> = {
   key: string;
   target?: string;
   onTargetClick?: () => void;
@@ -74,20 +74,6 @@ export interface IGuider {
 }
 
 export type Status = "stop" | "stepStarting" | "stepExiting" | "show";
-
-export const defaultOption: GuiderOption = {
-  steps: [],
-  overlayColor: "#333333",
-  overlayOpacity: 0.5,
-  zIndex: 99999,
-  popoverPosition: "auto",
-  popoverGap: 8,
-  popoverTop: "0px",
-  popoverLeft: "0px",
-  popoverAnimation: "flip-y",
-  popoverAnimationDuration: "400ms",
-  popoverAnimationFunction: "ease",
-};
 
 export const getDefaultOption = <T>() => {
   const defaultOption: GuiderOption<T> = {

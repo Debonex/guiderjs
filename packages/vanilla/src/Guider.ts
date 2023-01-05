@@ -1,17 +1,21 @@
 import CoreGuider, {
   animationCss,
   createStyles,
-  defaultOption,
+  getDefaultOption,
   GuiderOption,
   IGuider,
-  Step,
+  Step as CoreStep,
 } from "@guiderjs/core";
 
 import createDiv from "./utils/createDiv";
 
-export type Option = GuiderOption & {
+export type Option = GuiderOption<Element> & {
   boundary?: string;
 };
+
+const defaultOption = getDefaultOption<Element>();
+
+type Step = CoreStep<Element>;
 
 export type { Step };
 

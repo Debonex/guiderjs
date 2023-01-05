@@ -12,6 +12,10 @@ const test = () => {
   console.log("test");
 };
 
+const handleStepStart = (step?: Step) => {
+  console.log(step?.key);
+};
+
 const handleStart = () => {
   guider.value?.start();
 };
@@ -40,7 +44,19 @@ const handleExit = () => {
     <div class="relative bg-slate-50 p-4">
       <div class="target1 bg-sky-300 p-2">target1</div>
       <div class="target2 mt-4 bg-red-300 p-2">target1</div>
-      <Guider :steps="steps" :on-start="() => test()" ref="guider" />
+      <Guider
+        :steps="steps"
+        :on-start="test"
+        :on-step-start="handleStepStart"
+        ref="guider"
+      >
+        <template #target1>
+          <div class="rounded-md bg-white p-2">popover</div>
+        </template>
+        <template #target2>
+          <div class="rounded-md bg-white p-2">popover target2</div>
+        </template>
+      </Guider>
     </div>
   </div>
 </template>
