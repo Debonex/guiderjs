@@ -1,6 +1,6 @@
 {
   "name": "@guiderjs/vanilla",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Customizable library for creating guide on your website.",
   "files": [
     "dist/*"
@@ -23,7 +23,7 @@
     "build": "run-p build:lib build:types"
   },
   "dependencies": {
-    "@guiderjs/core": "workspace:^0.1.0"
+    "@guiderjs/core": "workspace:^0.2.0"
   },
   "peerDependencies": {
     "vue": ">=3.0.0"

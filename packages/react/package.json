@@ -1,6 +1,6 @@
 {
   "name": "@guiderjs/react",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Customizable React component for creating guide on your website.",
   "files": [
     "dist/*"
@@ -24,7 +24,7 @@
     "build": "run-p build:lib build:types"
   },
   "dependencies": {
-    "@guiderjs/core": "workspace:^0.1.0"
+    "@guiderjs/core": "workspace:^0.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.26",
