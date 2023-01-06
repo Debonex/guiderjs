@@ -10,6 +10,7 @@
     "prettier:fix": "prettier --write .",
     "prepare": "husky install",
     "dev": "pnpm -F dev-* dev",
+    "dev:docs": "pnpm -F docs start",
     "build:core": "pnpm -F core build",
     "build:vanilla": "pnpm -F vanilla build",
     "build:react": "pnpm -F react build",
