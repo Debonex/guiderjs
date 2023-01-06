@@ -26,8 +26,7 @@ $ pnpm i
 # Build core module
 $ pnpm build
 
-# Start dev service on localhost:5173/react/index.html localhost:5173/vanilla/index.html etc.
 $ pnpm dev
 ```
 
-If you need hot module load of core module, import from "@core/index" instead of "@guiderjs/core", and you can skip pnpm build
+If you need hot module load of core module, import from "@core/index" instead of "@guiderjs/core", then you can skip pnpm build
