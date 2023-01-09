@@ -9,6 +9,7 @@ A customizable and animated library for creating guide on your website.
 - 🏳‍🌈 Support major frameworks (React,Vue)
 - ⚡ Lightweight
 - 🚧 Typescript support
+- ✨ Customizable
 
 ## Get started
 
@@ -30,3 +31,9 @@ $ pnpm dev
 ```
 
 If you need hot module load of core module, import from "@core/index" instead of "@guiderjs/core", then you can skip pnpm build
+
+### Develop docs
+
+```shell
+$ pnpm dev:docs
+```
