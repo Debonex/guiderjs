@@ -2,7 +2,12 @@
 module.exports = {
   content: ["src/**/*.{tsx,mdx}"],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        card: "var(--ifm-card-background-color)",
+        content: "var(--ifm-color-content)",
+      },
+    },
   },
   plugins: [],
 };
