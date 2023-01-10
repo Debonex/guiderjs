@@ -13,6 +13,7 @@
     "skipLibCheck": true,
     "noEmit": true,
     "paths": {
+      "@core/*": ["../../packages/core/src/*"],
       "@vue3/*": ["../../packages/vue3/src/*"]
     }
   },

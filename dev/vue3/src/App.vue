@@ -12,8 +12,8 @@ const test = () => {
   console.log("test");
 };
 
-const handleStepStart = (step?: Step) => {
-  console.log(step?.key);
+const handleStepStart = (step: Step, idx: number) => {
+  console.log(step.key, idx);
 };
 
 const handleStart = () => {

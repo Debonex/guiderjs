@@ -126,7 +126,7 @@ class Guider<T> implements IGuider {
     };
 
     if (this.currentStep.onStepStart) {
-      this.currentStep.onStepStart(this.currentStep);
+      this.currentStep.onStepStart(this.currentStep, this.currentStepIdx);
     }
     this.updateUI(this.currentStep);
     await this.targetManager.start(this.currentStep);
@@ -138,7 +138,7 @@ class Guider<T> implements IGuider {
   private async _exitCurrentStep() {
     this.status = "stepExiting";
     if (this.currentStep.onStepExit) {
-      this.currentStep.onStepExit(this.currentStep);
+      this.currentStep.onStepExit(this.currentStep, this.currentStepIdx);
     }
     await this.popoverManager.exit(this.currentStep);
   }

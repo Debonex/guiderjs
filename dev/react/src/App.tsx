@@ -22,12 +22,15 @@ function App() {
             {
               key: "target1",
               target: ".target1",
-              onStepStart: (step) => console.log(`start ${step?.key}`),
+              payload: { info: "payload of target1" },
+              onStepStart: (step, index) =>
+                console.log(`start ${step.key} ${index} ${step.payload.info}`),
             },
             {
               key: "target2",
               target: ".target2",
-              onStepExit: (step) => console.log(`exit ${step?.key}`),
+              onStepExit: (step, index) =>
+                console.log(`exit ${step.key} ${index}`),
             },
           ]}
           onStart={() => console.log("start")}

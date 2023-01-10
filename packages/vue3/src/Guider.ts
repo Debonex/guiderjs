@@ -48,8 +48,8 @@ export default defineComponent({
     popoverAnimation: String,
     popoverAnimationDuration: String,
     popoverAnimationFunction: String,
-    onStepStart: Function as PropType<(step?: Step) => void>,
-    onStepExit: Function as PropType<(step?: Step) => void>,
+    onStepStart: Function as PropType<(step: Step, idx: number) => void>,
+    onStepExit: Function as PropType<(step: Step, idx: number) => void>,
   },
   setup: (props, { expose, slots }) => {
     const styles = createStyles();

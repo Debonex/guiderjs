@@ -35,6 +35,9 @@ const guider = new Guider({
   onStart: () => {
     console.log("start");
   },
+  onStepStart: (step, idx) => {
+    console.log(step.key, idx);
+  },
   popover: popoverElement,
 });
 

@@ -1,5 +1,5 @@
-export type GuiderOption<T> = {
-  steps: Step<T>[];
+export type GuiderOption<T, P = any> = {
+  steps: Step<T, P>[];
   onStart?: () => void;
   onExit?: () => void;
   target?: string;
@@ -22,11 +22,11 @@ export type GuiderOption<T> = {
   popoverAnimation?: string;
   popoverAnimationDuration?: string;
   popoverAnimationFunction?: string;
-  onStepStart?: (step?: Step<T>) => void;
-  onStepExit?: (step?: Step<T>) => void;
+  onStepStart?: (step: Step<T, P>, idx: number) => void;
+  onStepExit?: (step: Step<T, P>, idx: number) => void;
 };
 
-export type Step<T> = {
+export type Step<T, P = any> = {
   key: string;
   target?: string;
   onTargetClick?: () => void;
@@ -48,8 +48,9 @@ export type Step<T> = {
   popoverAnimation?: string;
   popoverAnimationDuration?: string;
   popoverAnimationFunction?: string;
-  onStepStart?: (step?: Step<T>) => void;
-  onStepExit?: (step?: Step<T>) => void;
+  onStepStart?: (step: Step<T, P>, idx: number) => void;
+  onStepExit?: (step: Step<T, P>, idx: number) => void;
+  payload?: P;
 };
 
 export interface IGuider {
