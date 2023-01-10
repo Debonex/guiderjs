@@ -83,8 +83,8 @@ interface IGuider {
 | popoverAnimation         | popover animation name                                                        | string                                                                                   | "flip-y"  |
 | popoverAnimationDuration | popover animation duration                                                    | string                                                                                   | "400ms"   |
 | popoverAnimationFunction | popover animation timing function                                             | string                                                                                   | "ease"    |
-| onStepStart              | the callback function when step start                                         | (step:Step) => void                                                                      | -         |
-| onStepExit               | the callback function when step exit                                          | (step:Step) => void                                                                      | -         |
+| onStepStart              | the callback function when step start                                         | (step:Step,index:number) => void                                                         | -         |
+| onStepExit               | the callback function when step exit                                          | (step:Step,index:number) => void                                                         | -         |
 
 #### Step
 
@@ -106,5 +106,6 @@ interface IGuider {
 | popoverAnimation         | popover animation name                                                        | string                                                                                   | "flip-y"  |
 | popoverAnimationDuration | popover animation duration                                                    | string                                                                                   | "400ms"   |
 | popoverAnimationFunction | popover animation timing function                                             | string                                                                                   | "ease"    |
-| onStepStart              | the callback function when step start                                         | (step:Step) => void                                                                      | -         |
-| onStepExit               | the callback function when step exit                                          | (step:Step) => void                                                                      | -         |
+| onStepStart              | the callback function when step start                                         | (step:Step,index:number) => void                                                         | -         |
+| onStepExit               | the callback function when step exit                                          | (step:Step,index:number) => void                                                         | -         |
+| payload                  | step payload                                                                  | any                                                                                      | -         |
