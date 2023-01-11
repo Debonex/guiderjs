@@ -6,6 +6,7 @@ module.exports = {
       colors: {
         card: "var(--ifm-card-background-color)",
         content: "var(--ifm-color-content)",
+        primary: "var(--ifm-color-primary)",
       },
     },
   },

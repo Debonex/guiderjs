@@ -11,7 +11,6 @@ const Introduction: FC = () => {
       key: "target",
       target: ".t-target",
       popover: <Popover title="Target" content="This is target" />,
-      popoverPosition: "target-top",
     },
   ];
 
@@ -21,8 +20,8 @@ const Introduction: FC = () => {
 
   return (
     <IntroductionContext.Provider value={{ steps, guider }}>
-      <section className="relative flex items-center justify-center p-16">
-        <div className="t-target">target</div>
+      <section className=" relative mx-auto flex max-w-[500px] items-center justify-center rounded-md border p-16">
+        <div className="t-target p-4">target</div>
         <Guider steps={steps} ref={guider} />
       </section>
     </IntroductionContext.Provider>

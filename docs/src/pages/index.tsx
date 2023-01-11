@@ -15,13 +15,14 @@ function HomepageHeader() {
       <div className="container">
         <h1 className="hero__title">{siteConfig.title}</h1>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
+        <div className={clsx(styles.buttons, "gap-4")}>
           <Link
             className="button button--secondary button--lg"
             to="/docs/intro"
           >
             Get started
           </Link>
+          <div className="button button--secondary button--lg">Preview</div>
         </div>
       </div>
     </header>
