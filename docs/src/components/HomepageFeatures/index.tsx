@@ -9,11 +9,11 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: "👌 Easy to Use",
+    title: "🔧 Customizable",
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        ✨ You can customize everything in your guide, and you can also create
+        popover with your UI library.
       </>
     ),
   },

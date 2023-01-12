@@ -15,7 +15,7 @@ function HomepageHeader() {
   const { guider } = useContext(GuiderContext);
   return (
     <header className={clsx("hero hero--primary", styles.heroBanner)}>
-      <div className="container">
+      <div className="container py-2">
         <h1 className="hero__title">{siteConfig.title}</h1>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
         <div className={clsx(styles.buttons, "gap-4")}>
@@ -43,10 +43,46 @@ export default function Home(): JSX.Element {
 
   const guiderSteps: Step[] = [
     {
-      key: "hero",
-      target: ".hero .container",
-      popover: <Popover title="Hello world!" content="Welcome to guiderjs." />,
+      key: "welcome",
+      popover: (
+        <Popover title="Hello guiderjs!">
+          😉 Welcome to guiderjs. This is a{" "}
+          <span className="text-primary">customable</span> and{" "}
+          <span className="text-primary">animated</span> library of creating
+          user guide on your website.
+        </Popover>
+      ),
       popoverPosition: "center",
+    },
+    {
+      key: "customizable",
+      target: ".row .col:first-child",
+      popover: (
+        <Popover title="🔧 Customizable">
+          ✨ You can customize everything in your guide, and you can also create
+          popover with your UI library.
+        </Popover>
+      ),
+    },
+    {
+      key: "frameworks",
+      target: ".row .col:nth-child(2)",
+      popover: (
+        <Popover title="🏳‍🌈 Support major frameworks">
+          ✨ You can customize everything in your guide, and you can also create
+          popover with your UI library.
+        </Popover>
+      ),
+    },
+    {
+      key: "lightweight",
+      target: ".row .col:nth-child(3)",
+      popover: (
+        <Popover title="⚡ Lightweight">
+          ✨ You can customize everything in your guide, and you can also create
+          popover with your UI library.
+        </Popover>
+      ),
     },
   ];
 
@@ -54,7 +90,7 @@ export default function Home(): JSX.Element {
     <GuiderContext.Provider value={{ guider }}>
       <Layout
         title={`Hello from ${siteConfig.title}`}
-        description="guiderjs, a customizable and animated library for building guide in your website."
+        description="guiderjs, a customizable and animated library for building user guide in your website."
       >
         <HomepageHeader />
         <main>
