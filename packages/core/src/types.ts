@@ -3,9 +3,12 @@ export type GuiderOption<T, P = any> = {
   onStart?: () => void;
   onExit?: () => void;
   target?: string;
+  targetClass?: string;
+  preventTarget?: boolean;
   onTargetClick?: () => void;
   overlayColor?: string;
   overlayOpacity?: number;
+  overlayClass?: string;
   onOverlayClick?: () => void;
   zIndex?: number;
   popover?: T;
@@ -29,9 +32,12 @@ export type GuiderOption<T, P = any> = {
 export type Step<T, P = any> = {
   key: string;
   target?: string;
+  targetClass?: string;
+  preventTarget?: boolean;
   onTargetClick?: () => void;
   overlayColor?: string;
   overlayOpacity?: number;
+  overlayClass?: string;
   onOverlayClick?: () => void;
   zIndex?: number;
   popover?: T;
@@ -82,6 +88,7 @@ export const getDefaultOption = <T>() => {
     overlayColor: "#333333",
     overlayOpacity: 0.5,
     zIndex: 99999,
+    preventTarget: true,
     popoverPosition: "auto",
     popoverGap: 8,
     popoverTop: "0px",

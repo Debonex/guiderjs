@@ -23,8 +23,10 @@ function App() {
               key: "target1",
               target: ".target1",
               payload: { info: "payload of target1" },
+              preventTarget: false,
               onStepStart: (step, index) =>
                 console.log(`start ${step.key} ${index} ${step.payload.info}`),
+              overlayClass: "overlay-black",
             },
             {
               key: "target2",

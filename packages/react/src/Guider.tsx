@@ -81,20 +81,23 @@ const Guider: ForwardRefRenderFunction<IGuider, Option> = (props, ref) => {
         ref={overlayTop}
         style={overlayStyles(styles.overlayTop)}
         onClick={handleOverlayClick}
+        className={currentStep?.overlayClass}
       />
       <div style={styles.middle}>
         <div
           ref={overlayLeft}
           style={overlayStyles(styles.overlayLeft)}
           onClick={handleOverlayClick}
+          className={currentStep?.overlayClass}
         />
         <div
           ref={control}
           style={{
             ...styles.control,
             cursor: currentStep?.onTargetClick ? "pointer" : "initial",
-            pointerEvents: currentStep?.onTargetClick ? "all" : "none",
+            pointerEvents: currentStep?.preventTarget ? "initial" : "none",
           }}
+          className={currentStep?.targetClass}
           onClick={() =>
             currentStep?.onTargetClick && currentStep.onOverlayClick()
           }
@@ -106,11 +109,13 @@ const Guider: ForwardRefRenderFunction<IGuider, Option> = (props, ref) => {
         <div
           style={overlayStyles(styles.overlayRight)}
           onClick={handleOverlayClick}
+          className={currentStep?.overlayClass}
         />
       </div>
       <div
         style={overlayStyles(styles.overlayBottom)}
         onClick={handleOverlayClick}
+        className={currentStep?.overlayClass}
       />
     </div>
   );

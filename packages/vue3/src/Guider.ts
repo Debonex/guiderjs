@@ -92,6 +92,7 @@ export default defineComponent({
           cursor: currentStep.value?.onOverlayClick ? "pointer" : "initial",
         },
         ref,
+        class: currentStep.value?.overlayClass,
         onClick: currentStep.value?.onOverlayClick,
       });
     };
@@ -129,10 +130,15 @@ export default defineComponent({
           style: {
             ...styles.control,
             cursor: currentStep.value?.onTargetClick ? "pointer" : "initial",
-            pointerEvents: currentStep.value?.onTargetClick ? "all" : "none",
+            pointerEvents: currentStep.value?.preventTarget
+              ? "initial"
+              : "none",
           },
+          class: currentStep.value?.targetClass,
           ref: control,
-          onClick: () => currentStep.value?.onTargetClick(),
+          onClick: () =>
+            currentStep.value?.onTargetClick &&
+            currentStep.value.onTargetClick(),
         },
         popoverNode
       );

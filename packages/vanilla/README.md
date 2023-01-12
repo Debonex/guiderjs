@@ -69,9 +69,12 @@ class Guider {
 | onStart                  | the callback function when guider start                                       | () => void                                                                               | -         |
 | onExit                   | the callback function when guider exited                                      | () => void                                                                               | -         |
 | target                   | selector to select target (highlighted) element                               | string                                                                                   | -         |
+| targetClass              | className of target                                                           | string                                                                                   | -         |
+| preventTarget            | if prevent interaction of origin target element                               | boolean                                                                                  | true      |
 | onTargetClick            | the callback function when user click target (highlighted) part               | () => void                                                                               | -         |
 | overlayColor             | background color of overlays                                                  | string                                                                                   | "#333333" |
 | overlayOpacity           | opacity of overlays                                                           | number                                                                                   | 0.5       |
+| overlayClass             | className of overlays                                                         | string                                                                                   | -         |
 | zIndex                   | zindex property of guider container                                           | number                                                                                   | 99999     |
 | popover                  | popover element                                                               | Element                                                                                  | -         |
 | popoverPosition          | position of popover (works when you have popover)                             | "auto" \| "center" \| "target-top" \| "target-bottom" \| "target-left" \| "target-right" | "auto"    |
@@ -92,9 +95,12 @@ class Guider {
 | ------------------------ | ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | --------- |
 | key (required)           | unique key of step                                                            | string                                                                                   | -         |
 | target                   | selector to select target (highlighted) element                               | string                                                                                   | -         |
+| targetClass              | className of target                                                           | string                                                                                   | -         |
+| preventTarget            | if prevent interaction of origin target element                               | boolean                                                                                  | true      |
 | onTargetClick            | the callback function when user click target (highlighted) part               | () => void                                                                               | -         |
 | overlayColor             | background color of overlays                                                  | string                                                                                   | "#333333" |
 | overlayOpacity           | opacity of overlays                                                           | number                                                                                   | 0.5       |
+| overlayClass             | className of overlays                                                         | string                                                                                   | -         |
 | zIndex                   | zindex property of guider container                                           | number                                                                                   | 99999     |
 | popover                  | popover element                                                               | Element                                                                                  | -         |
 | popoverPosition          | position of popover (works when you have popover)                             | "auto" \| "center" \| "target-top" \| "target-bottom" \| "target-left" \| "target-right" | "auto"    |

@@ -91,6 +91,7 @@ class Guider implements IGuider {
       this.overlayRight,
       this.overlayBottom,
     ]) {
+      overlay.className = step.overlayClass;
       if (step.onOverlayClick) {
         overlay.onclick = () => step.onOverlayClick();
         overlay.style.cursor = "pointer";
@@ -101,14 +102,18 @@ class Guider implements IGuider {
       overlay.style.backgroundColor = step.overlayColor;
       overlay.style.opacity = String(step.overlayOpacity);
     }
-    if (step.target && step.onTargetClick) {
-      this.control.style.cursor = "pointer";
-      this.control.style.pointerEvents = "all";
-      this.control.onclick = () => step.onTargetClick();
-    } else {
-      this.control.style.cursor = "initial";
-      this.control.style.pointerEvents = "none";
-      this.control.onclick = null;
+    if (step.target) {
+      this.control.className = step.targetClass;
+      this.control.style.pointerEvents = step.preventTarget
+        ? "initial"
+        : "none";
+      if (step.onTargetClick) {
+        this.control.style.cursor = "pointer";
+        this.control.onclick = () => step.onTargetClick();
+      } else {
+        this.control.style.cursor = "initial";
+        this.control.onclick = null;
+      }
     }
 
     // update popover

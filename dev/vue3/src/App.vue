@@ -4,8 +4,18 @@ import { ref } from "vue";
 
 const guider = ref<IGuider>();
 const steps: Step[] = [
-  { key: "target1", target: ".target1" },
-  { key: "target2", target: ".target2" },
+  {
+    key: "target1",
+    target: ".target1",
+    overlayClass: "overlay-black",
+    preventTarget: false,
+  },
+  {
+    key: "target2",
+    target: ".target2",
+    onTargetClick: () => console.log("click"),
+    targetClass: "custom-target",
+  },
 ];
 
 const test = () => {
@@ -60,3 +70,13 @@ const handleExit = () => {
     </div>
   </div>
 </template>
+
+<style>
+.overlay-black {
+  background-color: black !important;
+}
+
+.custom-target {
+  border: 1px solid black;
+}
+</style>

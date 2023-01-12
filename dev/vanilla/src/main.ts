@@ -17,13 +17,15 @@ const steps: Step[] = [
     key: "target-1",
     target: ".target-1",
     onOverlayClick: () => console.log("click target 1 overlay"),
+    overlayClass: "overlay-black",
+    targetClass: "target-class",
   },
   {
     key: "target-2",
     target: ".target-2",
     onTargetClick: () => console.log("click target 2"),
   },
-  { key: "target-3", target: ".target-3" },
+  { key: "target-3", target: ".target-3", preventTarget: false },
 ];
 
 const guider = new Guider({
