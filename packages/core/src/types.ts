@@ -19,6 +19,7 @@ export type GuiderOption<T, P = any> = {
     | "target-bottom"
     | "target-left"
     | "target-right";
+  popoverAnchor?: "start" | "middle" | "end";
   popoverGap?: number;
   popoverLeft?: string;
   popoverTop?: string;
@@ -48,6 +49,7 @@ export type Step<T, P = any> = {
     | "target-bottom"
     | "target-left"
     | "target-right";
+  popoverAnchor?: "start" | "middle" | "end";
   popoverGap?: number;
   popoverLeft?: string;
   popoverTop?: string;
@@ -90,6 +92,7 @@ export const getDefaultOption = <T>() => {
     zIndex: 99999,
     preventTarget: true,
     popoverPosition: "auto",
+    popoverAnchor: "middle",
     popoverGap: 8,
     popoverTop: "0px",
     popoverLeft: "0px",

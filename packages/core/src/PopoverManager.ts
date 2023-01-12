@@ -137,28 +137,58 @@ class PopoverManager<T> {
 
   /** set popover to top of control */
   private _setControlTop(step: Step<T>) {
-    const height = getComputedStyle(this.popover).height;
-    this.popover.style.top = `calc(${step.popoverTop} - ${height} - ${step.popoverGap}px)`;
-    this.popover.style.left = step.popoverLeft;
+    const style = getComputedStyle(this.popover);
+    this.popover.style.top = `calc(${step.popoverTop} - ${style.height} - ${step.popoverGap}px)`;
+    if (step.popoverAnchor === "start") {
+      this.popover.style.left = step.popoverLeft;
+    } else if (step.popoverAnchor === "middle") {
+      this.popover.style.left = `calc(${step.popoverLeft} + 50% - ${style.width} / 2)`;
+    } else {
+      this.popover.style.left = `calc(${step.popoverLeft} + 100% - ${style.width})`;
+    }
   }
 
   /** set popover to bottom of control */
   private _setControlBottom(step: Step<T>) {
     this.popover.style.top = `calc(${step.popoverTop} + ${this.control.style.height} + ${step.popoverGap}px)`;
-    this.popover.style.left = step.popoverLeft;
+    if (step.popoverAnchor === "start") {
+      this.popover.style.left = step.popoverLeft;
+    } else if (step.popoverAnchor === "middle") {
+      // getComputedStyle when needed
+      const style = getComputedStyle(this.popover);
+      this.popover.style.left = `calc(${step.popoverLeft} + 50% - ${style.width} / 2)`;
+    } else {
+      const style = getComputedStyle(this.popover);
+      this.popover.style.left = `calc(${step.popoverLeft} + 100% - ${style.width})`;
+    }
   }
 
   /** set popover to left of control */
   private _setControlLeft(step: Step<T>) {
-    const width = getComputedStyle(this.popover).width;
-    this.popover.style.top = step.popoverTop;
-    this.popover.style.left = `calc(${step.popoverLeft} - ${width} - ${step.popoverGap}px)`;
+    const style = getComputedStyle(this.popover);
+    this.popover.style.left = `calc(${step.popoverLeft} - ${style.width} - ${step.popoverGap}px)`;
+    if (step.popoverAnchor === "start") {
+      this.popover.style.top = step.popoverTop;
+    } else if (step.popoverAnchor === "middle") {
+      this.popover.style.top = `calc(${step.popoverTop} + 50% - ${style.height} / 2)`;
+    } else {
+      this.popover.style.top = `calc(${step.popoverTop} + 100% - ${style.height})`;
+    }
   }
 
   /** set popover to right of control */
   private _setControlRight(step: Step<T>) {
-    this.popover.style.top = step.popoverTop;
     this.popover.style.left = `calc(${step.popoverLeft} + ${this.control.style.width} + ${step.popoverGap}px)`;
+    if (step.popoverAnchor === "start") {
+      this.popover.style.top = step.popoverTop;
+    } else if (step.popoverAnchor === "middle") {
+      // getComputedStyle when needed
+      const style = getComputedStyle(this.popover);
+      this.popover.style.top = `calc(${step.popoverTop} + 50% - ${style.height} / 2)`;
+    } else {
+      const style = getComputedStyle(this.popover);
+      this.popover.style.top = `calc(${step.popoverTop} + 100% - ${style.height})`;
+    }
   }
 
   private _extract(pxStr: string) {

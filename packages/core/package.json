@@ -1,6 +1,6 @@
 {
   "name": "@guiderjs/core",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Customizable library for creating guide on your website. (Common logic)",
   "files": [
     "dist/*"

@@ -19,13 +19,20 @@ const steps: Step[] = [
     onOverlayClick: () => console.log("click target 1 overlay"),
     overlayClass: "overlay-black",
     targetClass: "target-class",
+    popoverPosition: "target-left",
+    popoverAnchor: "start",
   },
   {
     key: "target-2",
     target: ".target-2",
     onTargetClick: () => console.log("click target 2"),
   },
-  { key: "target-3", target: ".target-3", preventTarget: false },
+  {
+    key: "target-3",
+    target: ".target-3",
+    preventTarget: false,
+    popoverAnchor: "end",
+  },
 ];
 
 const guider = new Guider({

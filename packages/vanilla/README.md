@@ -78,6 +78,7 @@ class Guider {
 | zIndex                   | zindex property of guider container                                           | number                                                                                   | 99999     |
 | popover                  | popover element                                                               | Element                                                                                  | -         |
 | popoverPosition          | position of popover (works when you have popover)                             | "auto" \| "center" \| "target-top" \| "target-bottom" \| "target-left" \| "target-right" | "auto"    |
+| popoverAnchor            | popover position to target                                                    | "start"\|"middle"\|"end"                                                                 | "middle"  |
 | popoverGap               | gap (px) between popover and target, (works when you have popover and target) | number                                                                                   | 8         |
 | popoverLeft              | left property of popover                                                      | string                                                                                   | "0px"     |
 | popoverTop               | top property of popover                                                       | string                                                                                   | "0px"     |
@@ -104,6 +105,7 @@ class Guider {
 | zIndex                   | zindex property of guider container                                           | number                                                                                   | 99999     |
 | popover                  | popover element                                                               | Element                                                                                  | -         |
 | popoverPosition          | position of popover (works when you have popover)                             | "auto" \| "center" \| "target-top" \| "target-bottom" \| "target-left" \| "target-right" | "auto"    |
+| popoverAnchor            | popover position to target                                                    | "start"\|"middle"\|"end"                                                                 | "middle"  |
 | popoverGap               | gap (px) between popover and target, (works when you have popover and target) | number                                                                                   | 8         |
 | popoverLeft              | left property of popover                                                      | string                                                                                   | "0px"     |
 | popoverTop               | top property of popover                                                       | string                                                                                   | "0px"     |
