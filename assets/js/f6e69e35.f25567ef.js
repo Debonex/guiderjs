@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdocs=self.webpackChunkdocs||[]).push([[2183],{8997:s=>{s.exports=JSON.parse('{"label":"facebook","permalink":"/guiderjs/blog/tags/facebook","allTagsPath":"/guiderjs/blog/tags","count":1}')}}]);
