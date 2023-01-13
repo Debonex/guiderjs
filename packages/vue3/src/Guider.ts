@@ -48,8 +48,8 @@ export default defineComponent({
     popoverAnimation: String,
     popoverAnimationDuration: String,
     popoverAnimationFunction: String,
-    onStepStart: Function as PropType<(step?: Step) => void>,
-    onStepExit: Function as PropType<(step?: Step) => void>,
+    onStepStart: Function as PropType<(step: Step, idx: number) => void>,
+    onStepExit: Function as PropType<(step: Step, idx: number) => void>,
   },
   setup: (props, { expose, slots }) => {
     const styles = createStyles();
@@ -92,6 +92,7 @@ export default defineComponent({
           cursor: currentStep.value?.onOverlayClick ? "pointer" : "initial",
         },
         ref,
+        class: currentStep.value?.overlayClass,
         onClick: currentStep.value?.onOverlayClick,
       });
     };
@@ -129,10 +130,15 @@ export default defineComponent({
           style: {
             ...styles.control,
             cursor: currentStep.value?.onTargetClick ? "pointer" : "initial",
-            pointerEvents: currentStep.value?.onTargetClick ? "all" : "none",
+            pointerEvents: currentStep.value?.preventTarget
+              ? "initial"
+              : "none",
           },
+          class: currentStep.value?.targetClass,
           ref: control,
-          onClick: () => currentStep.value?.onTargetClick(),
+          onClick: () =>
+            currentStep.value?.onTargetClick &&
+            currentStep.value.onTargetClick(),
         },
         popoverNode
       );

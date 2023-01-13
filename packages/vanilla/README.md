@@ -69,20 +69,24 @@ class Guider {
 | onStart                  | the callback function when guider start                                       | () => void                                                                               | -         |
 | onExit                   | the callback function when guider exited                                      | () => void                                                                               | -         |
 | target                   | selector to select target (highlighted) element                               | string                                                                                   | -         |
+| targetClass              | className of target                                                           | string                                                                                   | -         |
+| preventTarget            | if prevent interaction of origin target element                               | boolean                                                                                  | true      |
 | onTargetClick            | the callback function when user click target (highlighted) part               | () => void                                                                               | -         |
 | overlayColor             | background color of overlays                                                  | string                                                                                   | "#333333" |
 | overlayOpacity           | opacity of overlays                                                           | number                                                                                   | 0.5       |
+| overlayClass             | className of overlays                                                         | string                                                                                   | -         |
 | zIndex                   | zindex property of guider container                                           | number                                                                                   | 99999     |
 | popover                  | popover element                                                               | Element                                                                                  | -         |
 | popoverPosition          | position of popover (works when you have popover)                             | "auto" \| "center" \| "target-top" \| "target-bottom" \| "target-left" \| "target-right" | "auto"    |
+| popoverAnchor            | popover position to target                                                    | "start"\|"middle"\|"end"                                                                 | "middle"  |
 | popoverGap               | gap (px) between popover and target, (works when you have popover and target) | number                                                                                   | 8         |
 | popoverLeft              | left property of popover                                                      | string                                                                                   | "0px"     |
 | popoverTop               | top property of popover                                                       | string                                                                                   | "0px"     |
 | popoverAnimation         | popover animation name                                                        | string                                                                                   | "flip-y"  |
 | popoverAnimationDuration | popover animation duration                                                    | string                                                                                   | "400ms"   |
 | popoverAnimationFunction | popover animation timing function                                             | string                                                                                   | "ease"    |
-| onStepStart              | the callback function when step start                                         | (step:Step) => void                                                                      | -         |
-| onStepExit               | the callback function when step exit                                          | (step:Step) => void                                                                      | -         |
+| onStepStart              | the callback function when step start                                         | (step:Step,index:number) => void                                                         | -         |
+| onStepExit               | the callback function when step exit                                          | (step:Step,index:number) => void                                                         | -         |
 
 #### Step
 
@@ -92,17 +96,22 @@ class Guider {
 | ------------------------ | ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | --------- |
 | key (required)           | unique key of step                                                            | string                                                                                   | -         |
 | target                   | selector to select target (highlighted) element                               | string                                                                                   | -         |
+| targetClass              | className of target                                                           | string                                                                                   | -         |
+| preventTarget            | if prevent interaction of origin target element                               | boolean                                                                                  | true      |
 | onTargetClick            | the callback function when user click target (highlighted) part               | () => void                                                                               | -         |
 | overlayColor             | background color of overlays                                                  | string                                                                                   | "#333333" |
 | overlayOpacity           | opacity of overlays                                                           | number                                                                                   | 0.5       |
+| overlayClass             | className of overlays                                                         | string                                                                                   | -         |
 | zIndex                   | zindex property of guider container                                           | number                                                                                   | 99999     |
 | popover                  | popover element                                                               | Element                                                                                  | -         |
 | popoverPosition          | position of popover (works when you have popover)                             | "auto" \| "center" \| "target-top" \| "target-bottom" \| "target-left" \| "target-right" | "auto"    |
+| popoverAnchor            | popover position to target                                                    | "start"\|"middle"\|"end"                                                                 | "middle"  |
 | popoverGap               | gap (px) between popover and target, (works when you have popover and target) | number                                                                                   | 8         |
 | popoverLeft              | left property of popover                                                      | string                                                                                   | "0px"     |
 | popoverTop               | top property of popover                                                       | string                                                                                   | "0px"     |
 | popoverAnimation         | popover animation name                                                        | string                                                                                   | "flip-y"  |
 | popoverAnimationDuration | popover animation duration                                                    | string                                                                                   | "400ms"   |
 | popoverAnimationFunction | popover animation timing function                                             | string                                                                                   | "ease"    |
-| onStepStart              | the callback function when step start                                         | (step:Step) => void                                                                      | -         |
-| onStepExit               | the callback function when step exit                                          | (step:Step) => void                                                                      | -         |
+| onStepStart              | the callback function when step start                                         | (step:Step,index:number) => void                                                         | -         |
+| onStepExit               | the callback function when step exit                                          | (step:Step,index:number) => void                                                         | -         |
+| payload                  | step payload                                                                  | any                                                                                      | -         |

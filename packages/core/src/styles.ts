@@ -9,7 +9,7 @@ export const createStyles = () => {
       left: "0",
       right: "0",
       pointerEvents: "none",
-      overflow: "hidden",
+      overflow: "visible",
       visibility: "hidden",
       display: "flex",
       flexDirection: "column",

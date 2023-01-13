@@ -1,11 +1,14 @@
-export type GuiderOption<T> = {
-  steps: Step<T>[];
+export type GuiderOption<T, P = any> = {
+  steps: Step<T, P>[];
   onStart?: () => void;
   onExit?: () => void;
   target?: string;
+  targetClass?: string;
+  preventTarget?: boolean;
   onTargetClick?: () => void;
   overlayColor?: string;
   overlayOpacity?: number;
+  overlayClass?: string;
   onOverlayClick?: () => void;
   zIndex?: number;
   popover?: T;
@@ -16,22 +19,26 @@ export type GuiderOption<T> = {
     | "target-bottom"
     | "target-left"
     | "target-right";
+  popoverAnchor?: "start" | "middle" | "end";
   popoverGap?: number;
   popoverLeft?: string;
   popoverTop?: string;
   popoverAnimation?: string;
   popoverAnimationDuration?: string;
   popoverAnimationFunction?: string;
-  onStepStart?: (step?: Step<T>) => void;
-  onStepExit?: (step?: Step<T>) => void;
+  onStepStart?: (step: Step<T, P>, idx: number) => void;
+  onStepExit?: (step: Step<T, P>, idx: number) => void;
 };
 
-export type Step<T> = {
+export type Step<T, P = any> = {
   key: string;
   target?: string;
+  targetClass?: string;
+  preventTarget?: boolean;
   onTargetClick?: () => void;
   overlayColor?: string;
   overlayOpacity?: number;
+  overlayClass?: string;
   onOverlayClick?: () => void;
   zIndex?: number;
   popover?: T;
@@ -42,14 +49,16 @@ export type Step<T> = {
     | "target-bottom"
     | "target-left"
     | "target-right";
+  popoverAnchor?: "start" | "middle" | "end";
   popoverGap?: number;
   popoverLeft?: string;
   popoverTop?: string;
   popoverAnimation?: string;
   popoverAnimationDuration?: string;
   popoverAnimationFunction?: string;
-  onStepStart?: (step?: Step<T>) => void;
-  onStepExit?: (step?: Step<T>) => void;
+  onStepStart?: (step: Step<T, P>, idx: number) => void;
+  onStepExit?: (step: Step<T, P>, idx: number) => void;
+  payload?: P;
 };
 
 export interface IGuider {
@@ -81,7 +90,9 @@ export const getDefaultOption = <T>() => {
     overlayColor: "#333333",
     overlayOpacity: 0.5,
     zIndex: 99999,
+    preventTarget: true,
     popoverPosition: "auto",
+    popoverAnchor: "middle",
     popoverGap: 8,
     popoverTop: "0px",
     popoverLeft: "0px",

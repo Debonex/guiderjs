@@ -16,23 +16,43 @@ function App() {
       <div className="relative bg-slate-50 p-4">
         <div className="target1 bg-sky-300 p-2">target1</div>
         <div className="target2 mt-4 bg-red-300 p-2">target2</div>
+        <div className="flex gap-4">
+          <div className="target3 p-4">target3</div>
+          <div className="target4 p-4">target4</div>
+        </div>
         <Guider
           ref={guider}
           steps={[
             {
               key: "target1",
               target: ".target1",
-              onStepStart: (step) => console.log(`start ${step?.key}`),
+              payload: { info: "payload of target1" },
+              preventTarget: false,
+              onStepStart: (step, index) =>
+                console.log(`start ${step.key} ${index} ${step.payload.info}`),
+              overlayClass: "overlay-black",
+              popover: <div className="rounded-md bg-white p-2">popover</div>,
             },
             {
               key: "target2",
               target: ".target2",
-              onStepExit: (step) => console.log(`exit ${step?.key}`),
+              onStepExit: (step, index) =>
+                console.log(`exit ${step.key} ${index}`),
+              popover: <div className="rounded-md bg-white p-2">popover2</div>,
+            },
+            {
+              key: "target3",
+              target: ".target3",
+              popover: <div className="rounded-md bg-white p-3">popover3</div>,
+            },
+            {
+              key: "target4",
+              target: ".target4",
+              popover: <div className="rounded-md bg-white p-4">popover4</div>,
             },
           ]}
           onStart={() => console.log("start")}
           onExit={() => console.log("exit")}
-          popover={<div className="rounded-md bg-white p-2">popover</div>}
         />
       </div>
     </div>

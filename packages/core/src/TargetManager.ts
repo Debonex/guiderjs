@@ -44,15 +44,12 @@ class TargetManager<T> {
         await this.updateControl(0, 0, 0, 0);
       } else {
         const offset = offsetDoms(target, this.container);
-        // fixed to 2 digits, prevent deviation
-        offset.top = Number(offset.top.toFixed(2));
-        offset.left = Number(offset.left.toFixed(2));
         const targetRect = target.getBoundingClientRect();
         await this.updateControl(
-          targetRect.height,
-          targetRect.width,
-          offset.top,
-          offset.left
+          Math.round(targetRect.height),
+          Math.round(targetRect.width),
+          Math.round(offset.top),
+          Math.round(offset.left)
         );
       }
     }

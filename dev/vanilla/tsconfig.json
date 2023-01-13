@@ -15,6 +15,7 @@
     "noImplicitReturns": true,
     "skipLibCheck": true,
     "paths": {
+      "@core/*": ["../../packages/core/src/*"],
       "@vanilla/*": ["../../packages/vanilla/src/*"]
     }
   },

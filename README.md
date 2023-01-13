@@ -2,6 +2,8 @@
 
 A customizable and animated library for creating guide on your website.
 
+[Document](https://debonex.github.io/guiderjs)
+
 ## Features
 
 - 📦 Modern bundle
@@ -9,10 +11,11 @@ A customizable and animated library for creating guide on your website.
 - 🏳‍🌈 Support major frameworks (React,Vue)
 - ⚡ Lightweight
 - 🚧 Typescript support
+- ✨ Customizable
 
 ## Get started
 
-- [Vanilla](packages/vanilla/README.md)
+- [Vanilla](https://debonex.github.io/guiderjs/docs/react/Get%20started)
 - [React](packages/react/README.md)
 - [Vue3](packages/vue3/README.md)
 
@@ -26,8 +29,13 @@ $ pnpm i
 # Build core module
 $ pnpm build
 
-# Start dev service on localhost:5173/react/index.html localhost:5173/vanilla/index.html etc.
 $ pnpm dev
 ```
 
-If you need hot module load of core module, import from "@core/index" instead of "@guiderjs/core", and you can skip pnpm build
+If you need hot module load of core module, import from "@core/index" instead of "@guiderjs/core", then you can skip pnpm build
+
+### Develop docs
+
+```shell
+$ pnpm dev:docs
+```
