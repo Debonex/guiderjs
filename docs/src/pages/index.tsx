@@ -1,13 +1,12 @@
 import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Guider, { IGuider, Step } from "@guiderjs/react";
-// import Guider, { IGuider, Step } from "@site/../packages/react/src/index";
 import HomepageFeatures from "@site/src/components/HomepageFeatures";
+import Popover from "@site/src/components/Popover";
 import GuiderContext from "@site/src/misc/GuiderContext";
 import Layout from "@theme/Layout";
 import clsx from "clsx";
 import React, { useContext, useRef } from "react";
-import Popover from "@site/src/components/Popover";
 
 import styles from "./index.module.css";
 

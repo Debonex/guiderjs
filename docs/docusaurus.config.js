@@ -63,6 +63,9 @@ const config = {
     ({
       navbar: {
         title: "guiderjs",
+        logo: {
+          src: "img/logo.svg",
+        },
         items: [
           {
             type: "doc",

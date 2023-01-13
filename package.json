@@ -11,7 +11,7 @@
     "prepare": "husky install",
     "dev": "pnpm -F dev-* dev",
     "dev:docs": "pnpm -F docs start",
-    "deploy:docs": "pnpm --shell-emulator -F docs deploy",
+    "deploy:docs": "pnpm config set shell-emulator true && pnpm run -F docs deploy",
     "build:core": "pnpm -F core build",
     "build:vanilla": "pnpm -F vanilla... build",
     "build:react": "pnpm -F react... build",
