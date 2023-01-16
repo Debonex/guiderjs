@@ -154,7 +154,7 @@ _default_: `"0px"`
 
 _default_: `"flip-y"`
 
-Animation name of popover.
+Animation name of popover, we have some built-in animations: `flip-y`.
 
 ### popoverAnimationDuration
 

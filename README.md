@@ -15,8 +15,8 @@ A customizable and animated library for creating guide on your website.
 
 ## Get started
 
-- [Vanilla](https://debonex.github.io/guiderjs/docs/react/Get%20started)
-- [React](packages/react/README.md)
+- [Vanilla](packages/vanilla/README.mdd)
+- [React](https://debonex.github.io/guiderjs/docs/react/Get%20started)
 - [Vue3](packages/vue3/README.md)
 
 ## Development

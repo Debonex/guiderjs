@@ -6,7 +6,7 @@ import Popover from "@site/src/components/Popover";
 import GuiderContext from "@site/src/misc/GuiderContext";
 import Layout from "@theme/Layout";
 import clsx from "clsx";
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef, useState } from "react";
 
 import styles from "./index.module.css";
 
@@ -40,6 +40,7 @@ function HomepageHeader() {
 export default function Home(): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
   const guider = useRef<IGuider>();
+  const [stepIdx, setStepIdx] = useState(-1);
 
   const guiderSteps: Step[] = [
     {
@@ -90,7 +91,7 @@ export default function Home(): JSX.Element {
   ];
 
   return (
-    <GuiderContext.Provider value={{ guider }}>
+    <GuiderContext.Provider value={{ guider, steps: guiderSteps, stepIdx }}>
       <Layout
         title={`Hello from ${siteConfig.title}`}
         description="guiderjs, a customizable and animated library for building user guide in your website."
@@ -99,7 +100,11 @@ export default function Home(): JSX.Element {
         <main>
           <HomepageFeatures />
         </main>
-        <Guider steps={guiderSteps} ref={guider} />
+        <Guider
+          steps={guiderSteps}
+          ref={guider}
+          onStepStart={(_, idx) => setStepIdx(idx)}
+        />
       </Layout>
     </GuiderContext.Provider>
   );
