@@ -1,8 +1,10 @@
 import Guider, { IGuider } from "@react/index";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 function App() {
   const guider = useRef<IGuider>(null);
+
+  const [duration, setDuration] = useState("400ms");
   return (
     <div className="grid h-screen w-screen grid-rows-[auto,minmax(0,1fr)]">
       <div className="p-1">
@@ -11,6 +13,11 @@ function App() {
           <button onClick={() => guider.current?.next()}>next</button>
           <button onClick={() => guider.current?.back()}>back</button>
           <button onClick={() => guider.current?.exit()}>exit</button>
+          <input
+            type="text"
+            value={duration}
+            onInput={(e) => setDuration(e.currentTarget.value)}
+          />
         </div>
       </div>
       <div className="relative bg-slate-50 p-4">
@@ -22,6 +29,7 @@ function App() {
         </div>
         <Guider
           ref={guider}
+          popoverAnimationDuration={duration}
           steps={[
             {
               key: "target1",

@@ -105,6 +105,10 @@ class Guider<T> implements IGuider {
   }
   setOption(option: GuiderOption<T>) {
     this.option = option;
+    this.currentStep = {
+      ...this.option,
+      ...this.option.steps[this.currentStepIdx],
+    };
   }
   setUpdateUI(updateUI: (step: Step<T>) => void) {
     this.updateUI = updateUI;
