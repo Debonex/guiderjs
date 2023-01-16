@@ -98,4 +98,15 @@ const config = {
     }),
 };
 
+if (process.env.NODE_ENV !== "development") {
+  config.scripts = [
+    {
+      src: "https://umami.debonex.site/umami.js",
+      async: true,
+      defer: true,
+      "data-website-id": "b18b83d9-1dc7-4c7b-8f39-9bfaecf8920e",
+    },
+  ];
+}
+
 module.exports = config;
