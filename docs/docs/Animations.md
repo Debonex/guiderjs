@@ -1,6 +1,12 @@
 ## Built-in animations
 
-We have some built-in animations: `flip-y`
+We have some built-in animations:
+
+- flip-y
+- fade
+- scale
+
+[Demo](/docs/Demo)
 
 ## Custom animations
 

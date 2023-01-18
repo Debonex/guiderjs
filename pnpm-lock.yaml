@@ -138,7 +138,12 @@ importers:
         injected: true
 
   packages/core:
-    specifiers: {}
+    specifiers:
+      esbuild: ^0.16.4
+      esbuild-plugin-raw-css: ^0.1.0
+    devDependencies:
+      esbuild: 0.16.4
+      esbuild-plugin-raw-css: 0.1.0_esbuild@0.16.4
 
   packages/react:
     specifiers:
@@ -6498,6 +6503,17 @@ packages:
       is-callable: 1.2.7
       is-date-object: 1.0.5
       is-symbol: 1.0.4
+    dev: true
+
+  /esbuild-plugin-raw-css/0.1.0_esbuild@0.16.4:
+    resolution:
+      {
+        integrity: sha512-4nYDkEqSF3xzNveTSJukCKBsIRJPZY2tbAQ/CtneCC7uSWV2GPx4ypZYspkeW5TJL3OAelaLddbFZ0pJy8RCmQ==,
+      }
+    peerDependencies:
+      esbuild: ^0.14.36 || ^0.15.0 || ^0.16.0
+    dependencies:
+      esbuild: 0.16.4
     dev: true
 
   /esbuild/0.16.4:

@@ -1,6 +1,6 @@
 {
   "name": "@guiderjs/react",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "Customizable and animated React component for creating guide on your website.",
   "files": [
     "dist/*"

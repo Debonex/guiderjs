@@ -47,6 +47,9 @@ function App() {
               onStepExit: (step, index) =>
                 console.log(`exit ${step.key} ${index}`),
               popover: <div className="rounded-md bg-white p-2">popover2</div>,
+              popoverAnimation: "scale",
+              popoverAnimationFunction:
+                "cubic-bezier(0.175, 0.885, 0.320, 1.275)",
             },
             {
               key: "target3",

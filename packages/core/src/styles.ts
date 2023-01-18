@@ -1,3 +1,5 @@
+import animationCss from "./animations.css?raw";
+
 const defineStyle = (style: Partial<CSSStyleDeclaration>) => style;
 
 export const createStyles = () => {
@@ -52,27 +54,6 @@ export const createStyles = () => {
   };
 };
 
-export const animationCss = `
-@keyframes guiderjs-flip-y {
-  from {
-    opacity: 0;
-    transform: rotate3d(1, 0, 0, -180deg);
-  }
-  to {
-    opacity: 1;
-    transform: rotate3d(1, 0, 0, 0deg);
-  }
-}
-@keyframes guiderjs-flip-y-out {
-  from {
-      opacity: 1;
-      transform: rotate3d(1, 0, 0, 0deg);
-  }
-  to {
-      opacity: 0;
-      transform: rotate3d(1, 0, 0, -180deg);
-  }
-}
-`;
+export { animationCss };
 
 export type Styles = ReturnType<typeof createStyles>;

@@ -42,6 +42,7 @@ const Demo: FC = () => {
           ref={guider}
           steps={steps}
           popoverAnimationDuration={`${animationDuration}ms`}
+          popoverAnimation="scale"
           popover={
             <Popover title="Popover" hideButton>
               <div className="pb-4">This is popover</div>
