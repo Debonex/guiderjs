@@ -5,6 +5,7 @@ function App() {
   const guider = useRef<IGuider>(null);
 
   const [duration, setDuration] = useState("400ms");
+  const [opacity, setOpacity] = useState(0.3);
   return (
     <div className="grid h-screen w-screen grid-rows-[auto,minmax(0,1fr)]">
       <div className="p-1">
@@ -18,6 +19,9 @@ function App() {
             value={duration}
             onInput={(e) => setDuration(e.currentTarget.value)}
           />
+          <button onClick={() => setOpacity(1 - opacity)}>
+            change opacity
+          </button>
         </div>
       </div>
       <div className="relative bg-slate-50 p-4">
@@ -40,6 +44,7 @@ function App() {
                 console.log(`start ${step.key} ${index} ${step.payload.info}`),
               overlayClass: "overlay-black",
               popover: <div className="rounded-md bg-white p-2">popover</div>,
+              overlayOpacity: opacity,
             },
             {
               key: "target2",

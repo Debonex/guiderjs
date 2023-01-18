@@ -94,7 +94,7 @@ importers:
       "@docusaurus/types": ^2.2.0
       "@emotion/react": ^11.10.5
       "@emotion/styled": ^11.10.5
-      "@guiderjs/react": 0.2.6
+      "@guiderjs/react": 0.2.7
       "@mdx-js/react": ^1.6.22
       "@mui/material": ^5.11.4
       "@tsconfig/docusaurus": ^1.0.5
@@ -12928,7 +12928,7 @@ packages:
     resolution: { directory: packages/react, type: directory }
     id: file:packages/react
     name: "@guiderjs/react"
-    version: 0.2.6
+    version: 0.2.7
     peerDependencies:
       react: ">=16.9.0"
       react-dom: ">=16.9.0"
