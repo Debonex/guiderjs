@@ -1,5 +1,5 @@
-import Guider, { Step, Option } from "./Guider";
+import Guider, { Option, PopoverAnchor, PopoverPosition, Step } from "./Guider";
 
-export type { Step, Option };
+export type { Step, Option, PopoverAnchor, PopoverPosition };
 
 export default Guider;

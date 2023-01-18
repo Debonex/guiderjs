@@ -1,5 +1,10 @@
-import Guider, { IGuider, Step } from "./Guider";
+import Guider, {
+  IGuider,
+  PopoverAnchor,
+  PopoverPosition,
+  Step,
+} from "./Guider";
 
-export type { IGuider, Step };
+export type { IGuider, Step, PopoverAnchor, PopoverPosition };
 
 export default Guider;

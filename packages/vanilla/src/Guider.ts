@@ -4,6 +4,8 @@ import CoreGuider, {
   getDefaultOption,
   GuiderOption,
   IGuider,
+  PopoverAnchor,
+  PopoverPosition,
   Step as CoreStep,
 } from "@guiderjs/core";
 
@@ -17,7 +19,7 @@ const defaultOption = getDefaultOption<Element>();
 
 type Step = CoreStep<Element>;
 
-export type { Step };
+export type { Step, PopoverAnchor, PopoverPosition };
 
 class Guider implements IGuider {
   private guider: CoreGuider<Element>;

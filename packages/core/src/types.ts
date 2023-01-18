@@ -30,6 +30,16 @@ export type GuiderOption<T, P = any> = {
   onStepExit?: (step: Step<T, P>, idx: number) => void;
 };
 
+export type PopoverPosition =
+  | "auto"
+  | "center"
+  | "target-top"
+  | "target-bottom"
+  | "target-left"
+  | "target-right";
+
+export type PopoverAnchor = "start" | "middle" | "end";
+
 export type Step<T, P = any> = {
   key: string;
   target?: string;
@@ -42,14 +52,8 @@ export type Step<T, P = any> = {
   onOverlayClick?: () => void;
   zIndex?: number;
   popover?: T;
-  popoverPosition?:
-    | "auto"
-    | "center"
-    | "target-top"
-    | "target-bottom"
-    | "target-left"
-    | "target-right";
-  popoverAnchor?: "start" | "middle" | "end";
+  popoverPosition?: PopoverPosition;
+  popoverAnchor?: PopoverAnchor;
   popoverGap?: number;
   popoverLeft?: string;
   popoverTop?: string;

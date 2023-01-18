@@ -4,6 +4,8 @@ import CoreGuider, {
   getDefaultOption,
   GuiderOption,
   IGuider,
+  PopoverAnchor,
+  PopoverPosition,
   Step as CoreStep,
 } from "@guiderjs/core";
 import {
@@ -125,4 +127,4 @@ const ForwardedGuider = forwardRef(Guider);
 
 export default ForwardedGuider;
 
-export type { IGuider, Option, Step };
+export type { IGuider, Option, Step, PopoverAnchor, PopoverPosition };

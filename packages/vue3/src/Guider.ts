@@ -1,8 +1,10 @@
 import CoreGuider, {
-  createStyles,
   animationCss,
+  createStyles,
   getDefaultOption,
   IGuider,
+  PopoverAnchor,
+  PopoverPosition,
   Step as CoreStep,
 } from "@guiderjs/core";
 import {
@@ -18,7 +20,7 @@ import {
 
 type Step = CoreStep<boolean>;
 
-export type { IGuider, Step };
+export type { IGuider, Step, PopoverAnchor, PopoverPosition };
 const defaultOption = getDefaultOption<boolean>();
 
 export default defineComponent({
